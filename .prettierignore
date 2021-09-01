@@ -1,0 +1,14 @@
+**/node_modules
+**/dist
+**/package.json
+**/package-lock.json
+**/.prettierrc.json
+**/.eslintrc.js
+**/tsconfig.js
+**/tailwind
+**/tailwind.config.js
+**/postcss.config.js
+**/gulp
+**/gulpfile.js
+**/craco.config.js
+**/reportWebVitals.ts
