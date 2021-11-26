@@ -52,9 +52,9 @@ export const PageHeader: FC = function () {
             style={{ marginTop: 0 }}
             onClick={(): void => {
               setSelectedKey(item.name);
-              const violation = document.getElementById(item.name);
+              const element = document.getElementById(item.name);
               window.scrollTo({
-                top: violation?.offsetTop,
+                top: element?.offsetTop,
                 behavior: "smooth",
               });
             }}

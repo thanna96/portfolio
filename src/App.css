@@ -45,3 +45,41 @@ body, html {
 .modified-item .ant-menu-horizontal, .ant-menu-item::after, .ant-menu-submenu::after {
   border: none !important;
 }
+
+.centered-container {
+  display: flex!important;
+  min-height: 50vh!important;
+  margin-bottom: 30px!important;
+}
+
+.ui {
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  margin: 0;
+  padding: 0;
+}
+.ui>li {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.ui .close {
+  background: #FF5011;
+}
+
+.ui .min {
+  background: #ffc000;
+}
+
+.ui .max {
+  background: #4EE949;
+}

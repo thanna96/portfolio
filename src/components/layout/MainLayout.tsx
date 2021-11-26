@@ -10,7 +10,7 @@ export const MainLayout: FC = function () {
     <div className="min-h-screen">
       <Layout style={{ background: "transparent" }}>
         <PageHeader />
-        <Layout>
+        <Layout style={{ background: "transparent" }}>
           <Content>
             <Dashboard />
           </Content>
