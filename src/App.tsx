@@ -1,14 +1,24 @@
-import React, {FC} from 'react';
-import './App.css';
-import MainLayout from './components/layout/MainLayout';
+import React, { FC } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import { MainLayout } from "./components/layout/MainLayout";
+import { Dashboard } from "./pages/Dashboard";
 
 /**
  *
  * @constructor
  */
-export const App: FC = function() {
+export const App: FC = function () {
   return (
-    <MainLayout/>
+    <Router>
+      <MainLayout>
+        <Routes>
+          <Route path={"/"}>
+            <Dashboard />
+          </Route>
+        </Routes>
+      </MainLayout>
+    </Router>
   );
 };
 
