@@ -1,10 +1,14 @@
 import React, { FC } from "react";
-/**
- *
- * @constructor
- */
+import { About } from "./About";
+import { Banner } from "./Banner";
+
 export const Dashboard: FC = function () {
-  return <></>;
+  return (
+    <>
+      <Banner />
+      <About />
+    </>
+  );
 };
 
 export default Dashboard;
