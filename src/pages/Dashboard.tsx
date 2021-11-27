@@ -13,7 +13,7 @@ export const Dashboard: FC = function () {
       <About />
       <PageDivider
         title={"Work History"}
-        subTitle={"2018- Present"}
+        subTitle={"2017 - Present"}
         id={"Work History"}
         color={"#936D61"}
         textColor={"white"}
