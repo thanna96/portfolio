@@ -3,6 +3,8 @@ import { About } from "./About";
 import { Banner } from "./Banner";
 import { WorkExperience } from "./WorkExperience";
 import { PageDivider } from "../components/PageDivider";
+import { Projects } from "./Projects";
+import { Skills } from "./Skills";
 
 export const Dashboard: FC = function () {
   return (
@@ -24,6 +26,7 @@ export const Dashboard: FC = function () {
         color={"#5effbc"}
         textColor={"black"}
       />
+      <Projects />
       <PageDivider
         title={"Skills"}
         subTitle={"Languages + Libraries + Frameworks"}
@@ -31,10 +34,11 @@ export const Dashboard: FC = function () {
         color={"#ea5735"}
         textColor={"white"}
       />
+      <Skills />
       <PageDivider
         title={"Contact"}
         subTitle={"Message Me To Learn More!"}
-        id={"contact"}
+        id={"Contact"}
         color={"#CBEFFF"}
         textColor={"black"}
       />
