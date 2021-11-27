@@ -9,7 +9,7 @@ const MENU_ITEMS = [
     url: "/",
   },
   {
-    name: "Work Experience",
+    name: "Work History",
     url: "/",
   },
   {
@@ -33,7 +33,15 @@ const MENU_ITEMS = [
 export const PageHeader: FC = function () {
   const [selectedKey, setSelectedKey] = useState("About Me");
   return (
-    <Header style={{ background: "transparent", padding: 0 }}>
+    <Header
+      style={{
+        background: "transparent",
+        padding: 0,
+        position: "sticky",
+        top: -1,
+        zIndex: 10000,
+      }}
+    >
       <Menu
         mode={"horizontal"}
         style={{

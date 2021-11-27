@@ -34,9 +34,12 @@ const aboutInfo = [
 ];
 export const About: FC = function () {
   return (
-    <div className={"centered-container"} id={"About Me"}>
+    <div className={"centered-container"}>
       <div className={"text-center m-auto"}>
-        <Card style={{ width: 950 }} bodyStyle={{ paddingTop: 0 }}>
+        <Card
+          style={{ width: 950 }}
+          bodyStyle={{ paddingTop: 0, paddingBottom: 0 }}
+        >
           <div>
             <ul className="ui">
               <li className="close" />
@@ -62,7 +65,7 @@ export const About: FC = function () {
                 ))}
               </div>
             </Col>
-            <Col span={2}></Col>
+            <Col span={2}> </Col>
             <Col span={15}>
               <h2 className={"text-2xl"}>Thomas Hanna</h2>
               <div className={"centered-container"}>

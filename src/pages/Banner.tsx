@@ -8,7 +8,11 @@ import {
 
 export const Banner: FC = function () {
   return (
-    <div className={"centered-container"} style={{ background: "#548d6c" }}>
+    <div
+      id={"About Me"}
+      className={"centered-container"}
+      style={{ background: "#548d6c" }}
+    >
       <div className={"text-center m-auto"}>
         <h1 className={"text-white text-3xl"}>Thomas Hanna</h1>
         <h2 className={"text-white text-2xl italic"}>
