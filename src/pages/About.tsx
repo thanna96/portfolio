@@ -37,7 +37,8 @@ export const About: FC = function () {
     <div className={"centered-container"}>
       <div className={"text-center m-auto"}>
         <Card
-          style={{ width: 950 }}
+          className={"w-11/12"}
+          style={{ marginLeft: "auto", marginRight: "auto" }}
           bodyStyle={{ paddingTop: 0, paddingBottom: 0 }}
         >
           <div>
@@ -50,11 +51,17 @@ export const About: FC = function () {
           </div>
           <Divider orientation="left" style={{ marginTop: 0 }} />
           <Row>
-            <Col span={6}>
+            <Col lg={6} sm={24} className={"w-full"}>
+              <h2 className={"text-2xl block md:hidden"}>Thomas Hanna</h2>
               <div className={"mb-3"}>
-                <img alt="my face" width={250} src={profilePicture} />
+                <img
+                  alt="my face"
+                  className={"mx-auto"}
+                  width={250}
+                  src={profilePicture}
+                />
               </div>
-              <div>
+              <div className={"mx-auto"} style={{ width: "250px" }}>
                 {aboutInfo.map((item) => (
                   <div key={item.title} style={{ textAlign: "left" }}>
                     <span style={{ fontWeight: 700, marginRight: "5px" }}>
@@ -65,10 +72,9 @@ export const About: FC = function () {
                 ))}
               </div>
             </Col>
-            <Col span={2}> </Col>
-            <Col span={15}>
-              <h2 className={"text-2xl"}>Thomas Hanna</h2>
-              <div className={"centered-container"}>
+            <Col lg={15} sm={24} className={"md:mx-auto"}>
+              <h2 className={"text-2xl hidden md:block"}>Thomas Hanna</h2>
+              <div className={"centered-container mt-16 md:mt-0"}>
                 <div className={"m-auto"}>
                   <p>
                     Growing up in a small rural town in New Jersey, I learned a

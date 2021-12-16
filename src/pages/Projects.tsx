@@ -33,7 +33,7 @@ export const Projects: FC = function () {
             </Card>
           </Col>
           <Col xs={24} md={8}>
-            <Card title="Computer Science Tutor" className={"w-11/12"}>
+            <Card title="React Term Grid" className={"w-11/12"}>
               <p style={{ fontWeight: 700 }}>CRM Software React Migration</p>
               <p>Language: ReactJS, HTML, CSS, Typescript</p>
               <p>Technologies: AntDesign, Tailwind</p>

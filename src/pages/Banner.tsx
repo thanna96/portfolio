@@ -5,15 +5,16 @@ import {
   GithubOutlined,
   MailOutlined,
 } from "@ant-design/icons";
+import retroBg from "../files/images/retro-background.png";
 
 export const Banner: FC = function () {
   return (
     <div
       id={"About Me"}
       className={"centered-container"}
-      style={{ background: "#548d6c" }}
+      style={{ backgroundImage: "url(" + retroBg + ")" }}
     >
-      <div className={"text-center m-auto"}>
+      <div className={"text-center m-auto py-6 px-2 md:p-8 bg-black"}>
         <h1 className={"text-white text-3xl"}>Thomas Hanna</h1>
         <h2 className={"text-white text-2xl italic"}>
           Software Developer / Programmer
