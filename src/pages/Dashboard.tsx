@@ -12,7 +12,7 @@ import contactBg from "../files/images/contact-bg.jpeg";
 
 export const Dashboard: FC = function () {
   return (
-    <>
+    <div style={{ background: "#f8f8f8" }}>
       <Banner />
       <About />
       <PageDivider
@@ -54,7 +54,7 @@ export const Dashboard: FC = function () {
         padding={"py-6 px-10 md:py-8 md:px-24"}
         textColor={"black"}
       />
-    </>
+    </div>
   );
 };
 

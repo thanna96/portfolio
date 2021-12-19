@@ -50,9 +50,9 @@ export const About: FC = function () {
             <p className={"my-2 font-bold"}>About Me</p>
           </div>
           <Divider orientation="left" style={{ marginTop: 0 }} />
+          <h2 className={"text-3xl "}>Thomas Hanna</h2>
           <Row>
             <Col lg={6} sm={24} className={"w-full"}>
-              <h2 className={"text-2xl block md:hidden"}>Thomas Hanna</h2>
               <div className={"mb-3"}>
                 <img
                   alt="my face"
@@ -73,7 +73,7 @@ export const About: FC = function () {
               </div>
             </Col>
             <Col lg={15} sm={24} className={"md:mx-auto"}>
-              <h2 className={"text-2xl hidden md:block"}>Thomas Hanna</h2>
+              {/*<h2 className={"text-2xl hidden sm:block"}>Thomas Hanna</h2>*/}
               <div className={"centered-container mt-16 md:mt-0"}>
                 <div className={"m-auto"}>
                   <p>
