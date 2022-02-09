@@ -18,6 +18,21 @@ export const Desktop: FC = function () {
       onClick: (): void => {},
     },
     {
+      text: "Projects",
+      image: folderIcon,
+      onClick: (): void => {},
+    },
+    {
+      text: "Bookmarks",
+      image: folderIcon,
+      onClick: (): void => {},
+    },
+    {
+      text: "Classes",
+      image: folderIcon,
+      onClick: (): void => {},
+    },
+    {
       text: "Internet Explorer",
       image: internet,
       onClick: (): void => {
