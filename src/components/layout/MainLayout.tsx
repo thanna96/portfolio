@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useState } from "react";
-import { Layout } from "antd";
-import { PageHeader } from "./Header";
-import { Dashboard } from "../../pages/Dashboard";
-import Desktop from "../../pages/Desktop";
-import WindowBootUp from "../WindowBootUp";
+// import { Layout } from "antd";
+// import { PageHeader } from "./Header";
+// import { Dashboard } from "../../pages/Dashboard";
+import { Desktop } from "../../pages/Desktop";
+import { WindowBootUp } from "../WindowBootUp";
 
-const { Content } = Layout;
+// const { Content } = Layout;
 
 export const MainLayout: FC = function () {
   const [loading, setLoading] = useState<boolean>(true);

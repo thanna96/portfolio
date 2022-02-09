@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from "react";
-import Title from "antd/es/typography/Title";
 import logo from "../files/icons/windows-logo.jpeg";
 
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

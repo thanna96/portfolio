@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { TaskBar } from "../components/TaskBar";
 import { DesktopIconGroup } from "../components/DesktopIconGroup";
 import folderIcon from "../files/icons/Windows 2000 Closed Folder-6.png";
@@ -10,27 +10,37 @@ export const Desktop: FC = function () {
     {
       text: "My Information",
       image: computer,
-      onClick: (): void => {},
+      onClick: (): void => {
+        return;
+      },
     },
     {
       text: "My Documents",
       image: folderIcon,
-      onClick: (): void => {},
+      onClick: (): void => {
+        return;
+      },
     },
     {
       text: "Projects",
       image: folderIcon,
-      onClick: (): void => {},
+      onClick: (): void => {
+        return;
+      },
     },
     {
       text: "Bookmarks",
       image: folderIcon,
-      onClick: (): void => {},
+      onClick: (): void => {
+        return;
+      },
     },
     {
       text: "Classes",
       image: folderIcon,
-      onClick: (): void => {},
+      onClick: (): void => {
+        return;
+      },
     },
     {
       text: "Internet Explorer",

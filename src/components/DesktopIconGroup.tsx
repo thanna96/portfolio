@@ -25,5 +25,5 @@ export const DesktopIconGroup: FC<propType> = function ({ icons }: propType) {
 export default DesktopIconGroup;
 
 type propType = {
-  icons: Array<any>;
+  icons: Array<{ text: string; image: string; onClick: () => void }>;
 };
