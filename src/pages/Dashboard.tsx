@@ -9,6 +9,7 @@ import workBg from "../files/images/retro-work.jpeg";
 import projectBg from "../files/images/project-bg.png";
 import skillsBg from "../files/images/skills-bg.jpeg";
 import contactBg from "../files/images/contact-bg.jpeg";
+import { Contact } from "./Contact";
 
 export const Dashboard: FC = function () {
   return (
@@ -26,7 +27,7 @@ export const Dashboard: FC = function () {
       />
       <WorkExperience />
       <PageDivider
-        title={"Projects"}
+        title={"Notable Projects"}
         subTitle={"Project Experience"}
         id={"Projects"}
         color={"#693971"}
@@ -54,6 +55,7 @@ export const Dashboard: FC = function () {
         padding={"py-6 px-10 md:py-8 md:px-24"}
         textColor={"black"}
       />
+      <Contact />
     </div>
   );
 };

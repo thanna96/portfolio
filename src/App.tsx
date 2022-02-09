@@ -1,8 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { MainLayout } from "./components/layout/MainLayout";
-import { Dashboard } from "./pages/Dashboard";
+// import { Dashboard } from "./pages/Dashboard";
+import { Desktop } from "./pages/Desktop";
 
 export const App: FC = function () {
   return (
@@ -10,7 +11,8 @@ export const App: FC = function () {
       <MainLayout>
         <Routes>
           <Route path={"/"}>
-            <Dashboard />
+            {/*<Dashboard />*/}
+            <Desktop />
           </Route>
         </Routes>
       </MainLayout>

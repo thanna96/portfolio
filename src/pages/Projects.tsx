@@ -24,8 +24,8 @@ export const Projects: FC = function () {
               <p>Language: AngularJS, HTML, CSS</p>
               <p>About:</p>
               <p>
-                Worked on the UI for this CRM with a team then eventually took
-                the lead role. The software facilitates the process for large
+                Worked on the UI for this CRM with a team then eventually took a
+                lead role. The software facilitates the process for large
                 companies to buy subsidiaries. The software has had billion
                 dollar transactions and is being used by customers every day.
               </p>
