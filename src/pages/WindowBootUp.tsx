@@ -11,33 +11,47 @@ export const WindowBootUp: FC = function () {
     }
   }, []);
   return (
-    <div>
-      <div className={"centered-container"}>
+    <div className={"h-full relative"}>
+      <div className={"centered-container h-full"}>
         <div
-          className={`bg-white relative border-black border-2 text-center mt-32 h-96 m-auto w-3/4`}
+          className={`bg-white relative border-black border-2 text-center h-3/4 md:h-4/6 m-auto w-3/4`}
         >
-          <h1 className={"text-xl text-center md:text-left font-black p-3"}>
-            Thomas Hanna
-            <br />
-            Software Developer
-          </h1>
-          <img
-            className={"mx-auto"}
-            src={logo}
-            alt={"windows logo"}
-            style={{ height: "30%" }}
-          />{" "}
-          BETA
-          <h1 className={"text-xl text-center md:text-right font-black p-3"}>
-            Welcome to my website!
-          </h1>
           <div
-            className={
-              "w-full m-0 absolute bottom-0 border-t-8 border-blue-800"
-            }
-            style={{ background: "#C0C0C0", height: "80px" }}
+            style={{
+              background: `url(${logo})`,
+              backgroundRepeat: "no-repeat",
+              backgroundPositionX: "center",
+              backgroundPositionY: "calc(50% - 40px)",
+            }}
+            className={"md:bg-50 bg-100 h-full relative"}
           >
-            <div className={"mx-auto text-center mt-2"}>Starting Up...</div>
+            <h1 className={"text-xl text-center md:text-left font-black p-3"}>
+              Thomas Hanna
+              <br />
+              Software Developer
+            </h1>
+            {/*<img*/}
+            {/*  className={"mx-auto h-2/6 md:h-2/5"}*/}
+            {/*  src={logo}*/}
+            {/*  alt={"windows logo"}*/}
+            {/*/>*/}
+            {/*BETA*/}
+            <h1
+              style={{ bottom: "80px" }}
+              className={
+                "absolute w-full text-xl text-center md:text-right font-black p-3"
+              }
+            >
+              Welcome to my website!
+            </h1>
+            <div
+              className={
+                "w-full m-0 absolute bottom-0 border-t-8 border-blue-800"
+              }
+              style={{ background: "#C0C0C0", height: "80px" }}
+            >
+              <div className={"mx-auto text-center mt-2"}>Starting Up...</div>
+            </div>
           </div>
         </div>
       </div>

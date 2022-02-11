@@ -6,18 +6,23 @@ export const DesktopIconGroup: FC<propType> = function ({ icons }: propType) {
 
   return (
     <div className={"m-4"}>
-      {icons.map((icon) => {
-        return (
-          <DesktopIcon
-            key={icon.text}
-            focused={focused}
-            setFocused={setFocused}
-            image={icon.image}
-            text={icon.text}
-            onClick={icon.onClick}
-          />
-        );
-      })}
+      <div
+        className={"grid-rows-4 grid-flow-col gap-2 row-span-1"}
+        style={{ display: "inline-grid" }}
+      >
+        {icons.map((icon) => {
+          return (
+            <DesktopIcon
+              key={icon.text}
+              focused={focused}
+              setFocused={setFocused}
+              image={icon.image}
+              text={icon.text}
+              onClick={icon.onClick}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
