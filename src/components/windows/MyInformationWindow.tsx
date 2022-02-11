@@ -20,11 +20,6 @@ export const MyInformationWindow: FC<propTypes> = function ({
           height: "500px",
         }}
         mask={false}
-        modalRender={(modal): ReactElement => (
-          <Draggable>
-            <div>{modal}</div>
-          </Draggable>
-        )}
       >
         <div
           className={"w-full h-full shadow-2xl"}
