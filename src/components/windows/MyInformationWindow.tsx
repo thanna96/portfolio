@@ -1,7 +1,6 @@
 import React, { FC, ReactElement } from "react";
-import { Col, Descriptions, Modal, Row, Tabs } from "antd";
+import { Modal } from "antd";
 import Draggable from "react-draggable";
-const { TabPane } = Tabs;
 
 export const MyInformationWindow: FC<propTypes> = function ({
   visible,
