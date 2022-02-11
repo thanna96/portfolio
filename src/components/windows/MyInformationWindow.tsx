@@ -1,12 +1,12 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC } from "react";
 import { Modal } from "antd";
-import Draggable from "react-draggable";
 
 export const MyInformationWindow: FC<propTypes> = function ({
   visible,
   icon,
   close,
 }: propTypes) {
+  // TODO: Add dragable to large screens
   return (
     <>
       <Modal
