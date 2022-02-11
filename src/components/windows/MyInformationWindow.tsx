@@ -60,31 +60,36 @@ export const MyInformationWindow: FC<propTypes> = function ({
             <span className={"font-black border-r-2 px-2"}>View</span>
           </div>
           <div
-            className={"m-4 border border-black bg-white shadow-inner p-2"}
+            className={
+              "m-4 border border-black bg-white shadow-inner p-2 overflow-y-auto"
+            }
             style={{ height: "375px" }}
           >
-            <Row>
-              <Col span={10}>
-                <img
-                  className={"ml-1 mt-0.5 float-left"}
-                  src={icon}
-                  alt={"icon"}
-                  style={{ height: "150px" }}
-                />
-              </Col>
-              <Col>
-                <h1 className={"text-xl"}>Registered To:</h1>
-                <p className={"ml-4 mb-0"}>Name:Thomas Hanna</p>
-                <p className={"ml-4 mb-0"}>Job:Programmer</p>
-                <p className={"ml-4 mb-0"}>
-                  Age:{~~((Date.now() - +new Date("03/15/1996")) / 31557600000)}
-                </p>
-                <p className={"ml-4 mb-0"}>University:Rutgers NB 2020</p>
-                <p className={"ml-4 mb-0"}>Degree:Computer Science</p>
-                <p className={"ml-4 mb-0"}>Location:NYC Metro Area</p>
-                <p className={"ml-4 mb-0"}>Email:THanna96@gmail.com</p>
-              </Col>
-            </Row>
+            <h1 className={"text-xl"}>Registered To:</h1>
+            <p className={"ml-4 mb-0"}>Name:Thomas Hanna</p>
+            <p className={"ml-4 mb-0"}>Job:Web Developer</p>
+            <p className={"ml-4 mb-0"}>
+              Age:{~~((Date.now() - +new Date("03/15/1996")) / 31557600000)}
+            </p>
+            <p className={"ml-4 mb-0"}>University:Rutgers NB 2020</p>
+            <p className={"ml-4 mb-0"}>Degree:Computer Science</p>
+            <p className={"ml-4 mb-0"}>Location:NYC Metro Area</p>
+            <p className={"ml-4 mb-0"}>Email:THanna96@gmail.com</p>
+            <p className={"ml-4 mb-0"}>About:</p>
+            <p className={"ml-4 mb-0"}>
+              My interest in programming in web development officially started
+              around 2015, I was struggling to find a career path in my first
+              year of college and had no direction, I passed my first semester
+              and was considering leaving and pursuing something else. Then, in
+              my second semester I took a Java programming class and realized
+              something, programming ROCKS.
+            </p>
+            <p className={"ml-4 mb-0"}>
+              Fast forward years later and I am currently working as a web
+              developer and I could not be happier. I primarily do front end
+              work with JS using React and Angular but I am also open to back
+              end dev too!
+            </p>
           </div>
           <div className={"absolute bottom-0 h-9 w-full"}>
             <button
