@@ -8,7 +8,7 @@ export const myDocsIcons = [
     text: "My Resume",
     image: textDocument,
     onClick: (): void => {
-      window.open("../files/Thomas_Hanna_Resume.pdf", "_blank");
+      window.open("Thomas_Hanna_Resume.pdf", "_blank");
       return;
     },
   },
