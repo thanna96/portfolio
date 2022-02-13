@@ -9,7 +9,10 @@ module.exports = {
       '50': '50%!important',
       '100': '100%!important',
     },
-    extend: {},
+    extend: {
+      height: {
+        '90': '90%',
+      }},
   },
   variants: {
     extend: {},
