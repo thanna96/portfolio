@@ -5,6 +5,8 @@ import folderIcon from "../files/icons/Windows 2000 Closed Folder-6.png";
 import internet from "../files/icons/Windows 2000 The Internet-2.png";
 import computer from "../files/icons/Windows 2000 My Computer-3.png";
 import { MyInformationWindow } from "../components/windows/MyInformationWindow";
+import { FolderMenu } from "../components/windows/FolderMenu";
+import { myDocsIcons } from "../components/iconsFolder";
 
 export const Desktop: FC = function () {
   const [openedWindows, setOpenedWindows] = useState<Array<string>>([]);
@@ -28,6 +30,7 @@ export const Desktop: FC = function () {
       text: "My Documents",
       image: folderIcon,
       onClick: (): void => {
+        setOpenedWindows([...openedWindows, "my_documents"]);
         return;
       },
     },
@@ -55,7 +58,7 @@ export const Desktop: FC = function () {
   ];
   return (
     <>
-      <DesktopIconGroup icons={icons} />
+      <DesktopIconGroup icons={icons} isFolder={false} />
       <TaskBar />
       <MyInformationWindow
         close={(): void =>
@@ -65,6 +68,16 @@ export const Desktop: FC = function () {
         }
         icon={computer}
         visible={openedWindows.includes("my_information")}
+      />
+      <FolderMenu
+        icons={myDocsIcons}
+        close={(): void =>
+          setOpenedWindows(
+            [...openedWindows].filter((window) => window !== "my_documents")
+          )
+        }
+        title={"My Documents"}
+        visible={openedWindows.includes("my_documents")}
       />
     </>
   );

@@ -5,6 +5,7 @@ export const DesktopIcon: FC<propType> = function ({
   text,
   image,
   onClick,
+  isFolder,
 }: propType) {
   return (
     <div
@@ -12,7 +13,7 @@ export const DesktopIcon: FC<propType> = function ({
         setFocused(text);
         onClick();
       }}
-      className={`cursor-pointer relative mb-2 ${
+      className={`cursor-pointer relative mb-2 ${isFolder && "border-black"} ${
         focused === text && "border border-dashed"
       }`}
       style={{ width: "70px" }}
@@ -24,7 +25,13 @@ export const DesktopIcon: FC<propType> = function ({
         style={{ height: "50px" }}
       />
       <div style={{ maxWidth: "70px" }} className={"overflow-x-hidden mx-auto"}>
-        <p className={"mb-0 text-center text-white break-words"}>{text}</p>
+        <p
+          className={`mb-0 text-center ${
+            !isFolder && "text-white"
+          } break-words`}
+        >
+          {text}
+        </p>
       </div>
     </div>
   );
@@ -38,4 +45,5 @@ type propType = {
   text: string;
   image: string;
   onClick: () => void;
+  isFolder: boolean;
 };
