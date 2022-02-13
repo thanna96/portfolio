@@ -6,7 +6,7 @@ import internet from "../files/icons/Windows 2000 The Internet-2.png";
 import computer from "../files/icons/Windows 2000 My Computer-3.png";
 import { MyInformationWindow } from "../components/windows/MyInformationWindow";
 import { FolderMenu } from "../components/windows/FolderMenu";
-import { myDocsIcons } from "../components/iconsFolder";
+import { bookmarkIcons, myDocsIcons } from "../components/iconsFolder";
 
 export const Desktop: FC = function () {
   const [openedWindows, setOpenedWindows] = useState<Array<string>>([]);
@@ -35,14 +35,15 @@ export const Desktop: FC = function () {
       },
     },
     {
-      text: "Projects",
+      text: "Bookmarks",
       image: folderIcon,
       onClick: (): void => {
+        setOpenedWindows([...openedWindows, "my_bookmarks"]);
         return;
       },
     },
     {
-      text: "Bookmarks",
+      text: "Projects",
       image: folderIcon,
       onClick: (): void => {
         return;
@@ -78,6 +79,16 @@ export const Desktop: FC = function () {
         }
         title={"My Documents"}
         visible={openedWindows.includes("my_documents")}
+      />
+      <FolderMenu
+        icons={bookmarkIcons}
+        close={(): void =>
+          setOpenedWindows(
+            [...openedWindows].filter((window) => window !== "my_bookmarks")
+          )
+        }
+        title={"My Bookmarks(Languages)"}
+        visible={openedWindows.includes("my_bookmarks")}
       />
     </>
   );

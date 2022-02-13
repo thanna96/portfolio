@@ -67,7 +67,7 @@ export const FolderMenu: FC<propTypes> = function ({
                 src={removableDriveIcon}
                 alt={"icon"}
                 style={{ height: "20px" }}
-              />{" "}
+              />
               <span className={"ml-2"}>C: \ {title} \</span>
             </div>
           </div>
@@ -84,8 +84,12 @@ export const FolderMenu: FC<propTypes> = function ({
             style={{ borderTop: "1px solid" }}
           >
             <div className={"h-6 text-left "} style={{ background: "#C0C0C0" }}>
-              <span className={"font-black border-r-2 px-2"}>20 Objects</span>
-              <span className={"font-black border-r-2 px-2"}>2.44MB</span>
+              <span className={"font-black border-r-2 px-2"}>
+                {icons.length} Objects
+              </span>
+              <span className={"font-black border-r-2 px-2"}>
+                {(icons.length * 6.9).toFixed(2)} MB
+              </span>
               <span className={"font-black border-l-2 px-2 float-right"}>
                 <img
                   className={"ml-1 inline-block"}
