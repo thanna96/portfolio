@@ -6,7 +6,12 @@ import internet from "../files/icons/Windows 2000 The Internet-2.png";
 import computer from "../files/icons/Windows 2000 My Computer-3.png";
 import { MyInformationWindow } from "../components/windows/MyInformationWindow";
 import { FolderMenu } from "../components/windows/FolderMenu";
-import { bookmarkIcons, myDocsIcons } from "../components/iconsFolder";
+import {
+  bookmarkIcons,
+  classesIcons,
+  myDocsIcons,
+  projectIcons,
+} from "../components/iconsFolder";
 
 export const Desktop: FC = function () {
   const [openedWindows, setOpenedWindows] = useState<Array<string>>([]);
@@ -46,6 +51,7 @@ export const Desktop: FC = function () {
       text: "Projects",
       image: folderIcon,
       onClick: (): void => {
+        setOpenedWindows([...openedWindows, "my_projects"]);
         return;
       },
     },
@@ -53,6 +59,7 @@ export const Desktop: FC = function () {
       text: "Classes",
       image: folderIcon,
       onClick: (): void => {
+        setOpenedWindows([...openedWindows, "my_classes"]);
         return;
       },
     },
@@ -89,6 +96,26 @@ export const Desktop: FC = function () {
         }
         title={"My Bookmarks(Languages)"}
         visible={openedWindows.includes("my_bookmarks")}
+      />
+      <FolderMenu
+        icons={projectIcons}
+        close={(): void =>
+          setOpenedWindows(
+            [...openedWindows].filter((window) => window !== "my_projects")
+          )
+        }
+        title={"My Projects"}
+        visible={openedWindows.includes("my_projects")}
+      />
+      <FolderMenu
+        icons={classesIcons}
+        close={(): void =>
+          setOpenedWindows(
+            [...openedWindows].filter((window) => window !== "my_classes")
+          )
+        }
+        title={"My Classes"}
+        visible={openedWindows.includes("my_classes")}
       />
     </>
   );

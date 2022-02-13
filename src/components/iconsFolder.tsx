@@ -85,3 +85,23 @@ export const bookmarkIcons = [
     },
   },
 ];
+export const projectIcons = [
+  {
+    text: "My Project WIP",
+    image: textDocument,
+    onClick: (): void => {
+      window.open("../files/Thomas_Hanna_Resume.pdf", "_blank");
+      return;
+    },
+  },
+];
+export const classesIcons = [
+  {
+    text: "My Class WIP",
+    image: textDocument,
+    onClick: (): void => {
+      window.open("../files/Thomas_Hanna_Resume.pdf", "_blank");
+      return;
+    },
+  },
+];
