@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import startIcon from "../files/icons/start_main.0.jpg";
+import soundIcon from "../files/icons/sound_icon.png";
+import { Popover } from "antd";
 
 export const TaskBar: FC = function () {
   const [menuActive, setMenuActive] = useState<boolean>(false);
@@ -28,21 +30,33 @@ export const TaskBar: FC = function () {
       className={"w-full m-0 absolute bottom-0 py-0.5"}
       style={{ background: "#C0C0C0", height: "40px" }}
     >
-      <button
-        onClick={(): void => setMenuActive(!menuActive)}
-        className={`${menuActive && "border border-dashed border-black"}`}
+      <Popover content={<></>} trigger={"click"}>
+        <button
+          onClick={(): void => setMenuActive(!menuActive)}
+          className={`${menuActive && "border border-dashed border-black"}`}
+        >
+          <img
+            src={startIcon}
+            alt={"start menu icon"}
+            style={{ height: "35px" }}
+          />
+        </button>
+      </Popover>
+      <div
+        style={{ height: "35px", borderColor: "#a4a4a4", borderWidth: "2px" }}
+        className={"float-right border border-black shadow-inner px-3 mr-1"}
       >
         <img
-          src={startIcon}
-          alt={"start menu icon"}
-          style={{ height: "35px" }}
+          className={"mr-2"}
+          src={soundIcon}
+          style={{
+            height: "20px",
+            display: "inline-block",
+            verticalAlign: "text-bottom",
+          }}
+          alt={"speaker"}
         />
-      </button>
-      <div
-        style={{ height: "33px" }}
-        className={"float-right border border-black shadow-inner px-5"}
-      >
-        <p className={"mb-0 mt-0.5 text-lg"}>{time}</p>
+        <p className={"mb-0 mt-0.5 text-lg inline-block"}>{time}</p>
       </div>
     </div>
   );
