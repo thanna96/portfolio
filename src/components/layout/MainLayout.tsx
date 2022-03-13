@@ -8,7 +8,7 @@ import { WindowBootUp } from "../../pages/WindowBootUp";
 // const { Content } = Layout;
 
 export const MainLayout: FC = function () {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     setTimeout(function () {
       setLoading(false);
