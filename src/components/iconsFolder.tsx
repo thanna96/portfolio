@@ -13,7 +13,7 @@ export const myDocsIcons = [
     },
   },
   {
-    text: "Ok Cupid Picture",
+    text: "Profile Picture",
     image: imageFile,
     onClick: (): void => {
       window.open(profile, "_blank");
@@ -21,7 +21,7 @@ export const myDocsIcons = [
     },
   },
 ];
-export const bookmarkIcons = [
+export const languageIcons = [
   {
     text: "Javascript",
     image: bookmarkIcon,
@@ -87,20 +87,52 @@ export const bookmarkIcons = [
 ];
 export const projectIcons = [
   {
-    text: "My Project WIP",
+    text: "Portfolio Website",
     image: textDocument,
     onClick: (): void => {
-      window.open("../files/Thomas_Hanna_Resume.pdf", "_blank");
+      window.open("https://github.com/thanna96/playground", "_blank");
+      return;
+    },
+  },
+  {
+    text: "Ecommerce Store",
+    image: textDocument,
+    onClick: (): void => {
+      window.open("https://github.com/thanna96/SewHoneyWebsite", "_blank");
+      return;
+    },
+  },
+  {
+    text: "Chess",
+    image: textDocument,
+    onClick: (): void => {
+      window.open("https://github.com/thanna96/Chess", "_blank");
       return;
     },
   },
 ];
-export const classesIcons = [
+export const bookmarkIcons = [
   {
-    text: "My Class WIP",
-    image: textDocument,
+    text: "Twitter",
+    image: bookmarkIcon,
     onClick: (): void => {
-      window.open("../files/Thomas_Hanna_Resume.pdf", "_blank");
+      window.open("https://twitter.com/ThomasHanna96", "_blank");
+      return;
+    },
+  },
+  {
+    text: "LinkedIn",
+    image: bookmarkIcon,
+    onClick: (): void => {
+      window.open("https://www.linkedin.com/in/thomashanna96/", "_blank");
+      return;
+    },
+  },
+  {
+    text: "Github",
+    image: bookmarkIcon,
+    onClick: (): void => {
+      window.open("https://github.com/thanna96", "_blank");
       return;
     },
   },

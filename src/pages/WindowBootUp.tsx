@@ -29,6 +29,8 @@ export const WindowBootUp: FC = function () {
               Thomas Hanna
               <br />
               Software Developer
+              <br />
+              Double click to open files!
             </h1>
             {/*<img*/}
             {/*  className={"mx-auto h-2/6 md:h-2/5"}*/}

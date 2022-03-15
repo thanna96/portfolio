@@ -8,7 +8,7 @@ import { MyInformationWindow } from "../components/windows/MyInformationWindow";
 import { FolderMenu } from "../components/windows/FolderMenu";
 import {
   bookmarkIcons,
-  classesIcons,
+  languageIcons,
   myDocsIcons,
   projectIcons,
 } from "../components/iconsFolder";
@@ -40,10 +40,10 @@ export const Desktop: FC = function () {
       },
     },
     {
-      text: "Bookmarks",
+      text: "Favorite Languages",
       image: folderIcon,
       onClick: (): void => {
-        setOpenedWindows([...openedWindows, "my_bookmarks"]);
+        setOpenedWindows([...openedWindows, "my_languages"]);
         return;
       },
     },
@@ -56,10 +56,10 @@ export const Desktop: FC = function () {
       },
     },
     {
-      text: "Classes",
+      text: "Bookmarks",
       image: folderIcon,
       onClick: (): void => {
-        setOpenedWindows([...openedWindows, "my_classes"]);
+        setOpenedWindows([...openedWindows, "my_bookmarks"]);
         return;
       },
     },
@@ -88,14 +88,14 @@ export const Desktop: FC = function () {
         visible={openedWindows.includes("my_documents")}
       />
       <FolderMenu
-        icons={bookmarkIcons}
+        icons={languageIcons}
         close={(): void =>
           setOpenedWindows(
-            [...openedWindows].filter((window) => window !== "my_bookmarks")
+            [...openedWindows].filter((window) => window !== "my_languages")
           )
         }
-        title={"My Bookmarks(Languages)"}
-        visible={openedWindows.includes("my_bookmarks")}
+        title={"Favorite Languages"}
+        visible={openedWindows.includes("my_languages")}
       />
       <FolderMenu
         icons={projectIcons}
@@ -108,14 +108,14 @@ export const Desktop: FC = function () {
         visible={openedWindows.includes("my_projects")}
       />
       <FolderMenu
-        icons={classesIcons}
+        icons={bookmarkIcons}
         close={(): void =>
           setOpenedWindows(
-            [...openedWindows].filter((window) => window !== "my_classes")
+            [...openedWindows].filter((window) => window !== "my_bookmarks")
           )
         }
-        title={"My Classes"}
-        visible={openedWindows.includes("my_classes")}
+        title={"Bookmarks"}
+        visible={openedWindows.includes("my_bookmarks")}
       />
     </>
   );
