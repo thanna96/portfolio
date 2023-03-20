@@ -90,7 +90,7 @@ export const projectIcons = [
     text: "Portfolio Website",
     image: textDocument,
     onClick: (): void => {
-      window.open("https://github.com/thanna96/playground", "_blank");
+      window.open("thomashanna.me", "_blank");
       return;
     },
   },
@@ -103,10 +103,18 @@ export const projectIcons = [
     },
   },
   {
-    text: "Chess",
+    text: "GE Cloud Managment",
     image: textDocument,
     onClick: (): void => {
-      window.open("https://github.com/thanna96/Chess", "_blank");
+      window.open("https://github.com/thanna96/where-can-you-stream", "_blank");
+      return;
+    },
+  },
+  {
+    text: "Termgrid",
+    image: textDocument,
+    onClick: (): void => {
+      window.open("https://app.termgrid.com/", "_blank");
       return;
     },
   },
