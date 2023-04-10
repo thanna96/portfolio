@@ -30,7 +30,7 @@ export const WindowBootUp: FC = function () {
               <br />
               Software Developer
               <br />
-              Double click to open files!
+              Click to open files!
             </h1>
             {/*<img*/}
             {/*  className={"mx-auto h-2/6 md:h-2/5"}*/}

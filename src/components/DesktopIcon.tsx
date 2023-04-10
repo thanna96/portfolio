@@ -9,7 +9,7 @@ export const DesktopIcon: FC<propType> = function ({
 }: propType) {
   return (
     <div
-      onDoubleClick={(): void => {
+      onClick={(): void => {
         setFocused(text);
         onClick();
       }}
