@@ -19,6 +19,7 @@ export const MyInformationWindow: FC<propTypes> = function ({
           border: "3px solid #C0C0C0",
           height: "500px",
         }}
+        onCancel={close}
         mask={false}
       >
         <div

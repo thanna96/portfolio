@@ -90,7 +90,7 @@ export const projectIcons = [
     text: "Portfolio Website",
     image: textDocument,
     onClick: (): void => {
-      window.open("thomashanna.me", "_blank");
+      window.open("/", "_blank");
       return;
     },
   },
@@ -98,15 +98,15 @@ export const projectIcons = [
     text: "Ecommerce Store",
     image: textDocument,
     onClick: (): void => {
-      window.open("https://github.com/thanna96/SewHoneyWebsite", "_blank");
+      window.open("https://test-store-thomas-hanna.netlify.app/", "_blank");
       return;
     },
   },
   {
-    text: "GE Cloud Managment",
+    text: "Crypto Chat",
     image: textDocument,
     onClick: (): void => {
-      window.open("https://github.com/thanna96/where-can-you-stream", "_blank");
+      window.open("https://github.com/thanna96/Crypto-Chat", "_blank");
       return;
     },
   },

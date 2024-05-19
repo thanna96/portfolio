@@ -22,6 +22,7 @@ export const FolderMenu: FC<propTypes> = function ({
           border: "3px solid #C0C0C0",
           height: "400px",
         }}
+        onCancel={close}
         mask={false}
       >
         <div
