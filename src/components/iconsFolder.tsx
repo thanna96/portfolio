@@ -118,6 +118,14 @@ export const projectIcons = [
       return;
     },
   },
+  {
+    text: "TaskList",
+    image: textDocument,
+    onClick: (): void => {
+      window.open("https://gotesttasklist.up.railway.app/", "_blank");
+      return;
+    },
+  },
 ];
 export const bookmarkIcons = [
   {
