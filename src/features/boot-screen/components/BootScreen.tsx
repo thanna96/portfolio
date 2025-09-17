@@ -36,7 +36,7 @@ export function BootScreen() {
                                 <br/>
                                 Click to open files!
                             </h1>
-                            <div className="relative my-4 h-1/2 w-1/2 md:h-48 md:w-72">
+                            <div className="relative my-4 h-1/2 w-3/4 md:h-48 md:w-72">
                                 <Image
                                     src={windowsLogo}
                                     alt="Windows logo"

@@ -21,13 +21,12 @@ export function DesktopIcon({
                                 isFolder,
                             }: DesktopIconProps) {
     return (
-        <button
-            type="button"
+        <div
             onClick={() => {
                 setFocused(text);
                 onClick();
             }}
-            className={`relative w-[70px] cursor-pointer border-transparent bg-transparent p-1 text-center ${
+            className={`relative w-[80px] cursor-pointer border-transparent bg-transparent p-1 text-center ${
                 focused === text ? "border border-dashed border-black" : ""
             }`}
         >
@@ -41,6 +40,6 @@ export function DesktopIcon({
             <p className={`mt-1 break-words text-sm ${!isFolder ? "text-white" : "text-black"}`}>
                 {text}
             </p>
-        </button>
+        </div>
     );
 }

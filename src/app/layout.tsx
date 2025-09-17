@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const sourceSans3 = Source_Sans_3({
     subsets: ['latin'],
     style: ['normal','italic'],
-    weight: ['300'],
+    weight: ['200'],
 });
 export default function RootLayout({
                                        children,

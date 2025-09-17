@@ -13,8 +13,9 @@ export function DesktopIconGroup({ icons, isFolder }: DesktopIconGroupProps) {
     const [focused, setFocused] = useState<string>("");
 
     return (
-        <div className="m-4 inline-grid gap-2" style={{ gridAutoFlow: "column" }}>
-            <div className={`${isFolder ? "grid-rows-2" : "grid-rows-4"} grid gap-2`}>
+        <div className="m-4">
+            <div className={`${isFolder ? "grid-rows-2" : "grid-rows-4"} grid-flow-col gap-2 row-span-1`}
+                 style={{ display: "inline-grid" }}>
                 {icons.map((icon) => (
                     <DesktopIcon
                         key={icon.id ?? icon.text}

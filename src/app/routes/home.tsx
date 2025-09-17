@@ -19,7 +19,8 @@ export function HomeRoute() {
                     className="relative m-auto h-[90vh] w-full lg:h-3/4 lg:w-3/4"
                     style={{ background: "#3A6EA5" }}
                 >
-                    {isBooting ? <BootScreen /> : <Desktop />}
+                    <Desktop />
+                    {/*{isBooting ? <BootScreen /> : <Desktop />}*/}
                 </div>
             </div>
         </div>

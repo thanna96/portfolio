@@ -13,7 +13,7 @@ body {
 .centered-container {
     display: flex !important;
     min-height: 50vh !important;
-    margin-bottom: 30px !important;
+    /*margin-bottom: 30px !important;*/
 }
 
 .window-shell-controls {
