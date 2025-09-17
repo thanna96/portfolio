@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Retro Portfolio (Next.js)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project recreates the retro Windows-inspired portfolio using [Next.js](https://nextjs.org/) and Tailwind CSS. The application shows a boot screen followed by a draggable-style desktop experience with folders, windows, and a start menu.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+```bash
+npm install
+npm run dev
+```
 
-### `npm start`
+Open [http://localhost:3000](http://localhost:3000) to view the application locally.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Additional Scripts
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `npm run build` – Build the production bundle.
+- `npm run start` – Start the production server.
+- `npm run lint` – Run ESLint using the Next.js configuration.
+- `npm run type-check` – Validate TypeScript types without emitting files.
 
-### `npm test`
+## Project Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+src
+├─ app
+│  ├─ app.tsx          # Main application component
+│  ├─ layout.tsx       # Root Next.js layout
+│  ├─ page.tsx         # Entry point that renders the app
+│  ├─ provider.tsx     # Global providers wrapper
+│  ├─ router.tsx       # Declarative route configuration
+│  ├─ routes
+│  │  └─ home.tsx      # Home route with boot screen + desktop
+├─ assets              # Static assets (icons, images)
+├─ features
+│  ├─ boot-screen      # Boot screen feature module
+│  └─ desktop          # Desktop experience feature module
+├─ components          # Reserved for shared components
+├─ config              # Reserved for configuration helpers
+├─ hooks               # Reserved for shared hooks
+├─ lib                 # Reserved for reusable libraries
+├─ stores              # Reserved for global state stores
+├─ testing             # Reserved for test utilities
+├─ types               # Shared TypeScript types
+└─ utils               # Shared utilities
+```
 
-### `npm run build`
+Most domain logic lives inside the `features` directory to keep the codebase modular and scalable. Each feature exports only the pieces needed by the application layer (`src/app`).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Styling
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Tailwind CSS powers the Windows-inspired look. Global utility classes and structural helpers (such as the centered container) live in `src/app/globals.css`.

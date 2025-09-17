@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
+
+.centered-container {
+  display: flex !important;
+  min-height: 50vh !important;
+  margin-bottom: 30px !important;
+}
+
+.window-shell-controls {
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.window-shell-controls li {
+  width: 11px;
+  height: 11px;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.window-shell-controls .close {
+  background: #ff5011;
+}
+
+.window-shell-controls .min {
+  background: #ffc000;
+}
+
+.window-shell-controls .max {
+  background: #4ee949;
+}
