@@ -1,6 +1,6 @@
 {
-  "name": "untitled",
-  "version": "0.1.0",
+  "name": "Portfolio Website",
+  "version": "2.1.0",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
