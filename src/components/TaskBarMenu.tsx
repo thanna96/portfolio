@@ -10,14 +10,10 @@ import textDocument from "../files/icons/Windows 2000 Text Document-2.png";
 export const TaskBarMenu: FC = function () {
   return (
     <div
-      className={"m-0 absolute p-0.5 w-11/12 sm:w-2/3 md:w-1/3 lg:w-1/4"}
-      style={{
-        border: "3px solid #a4a4a4",
-        height: "50%",
-        minHeight: "300px",
-        bottom: "40px",
-        background: "#C0C0C0",
-      }}
+      className={
+        "absolute bottom-10 m-0 w-11/12 min-h-[300px] p-0.5 sm:w-2/3 md:w-1/3 lg:w-1/4 bg-[#C0C0C0] border-[3px] border-[#a4a4a4]"
+      }
+      style={{ height: "50%" }}
     >
       <TaskMenuItem
         title={"Contact"}

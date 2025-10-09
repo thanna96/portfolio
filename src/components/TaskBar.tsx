@@ -29,18 +29,13 @@ export const TaskBar: FC = function () {
     <>
       {menuActive && <TaskBarMenu />}
       <div
-        className={"w-full m-0 absolute bottom-0 py-0.5"}
-        style={{ background: "#C0C0C0", height: "40px" }}
+        className={"absolute bottom-0 left-0 w-full bg-[#C0C0C0] py-0.5 h-10"}
       >
         <button
           onClick={(): void => setMenuActive(!menuActive)}
           className={`${menuActive && "border border-dashed border-black"}`}
         >
-          <img
-            src={startIcon}
-            alt={"start menu icon"}
-            style={{ height: "35px" }}
-          />
+          <img src={startIcon} alt={"start menu icon"} className={"h-[35px]"} />
         </button>
         <div
           style={{ height: "35px", borderColor: "#a4a4a4", borderWidth: "2px" }}
@@ -56,7 +51,7 @@ export const TaskBar: FC = function () {
             }}
             alt={"speaker"}
           />
-          <p className={"mb-0 mt-0.5 text-lg inline-block"}>{time}</p>
+          <p className={"mt-0.5 inline-block text-lg"}>{time}</p>
         </div>
       </div>
     </>

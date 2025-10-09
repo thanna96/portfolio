@@ -58,7 +58,7 @@ export const FolderMenu: FC<propTypes> = function ({
             <span className={"font-black border-r-2 px-2"}>View</span>
           </div>
           <div
-            className={"h-6 text-left border flex inline w-full"}
+            className={"flex h-6 w-full border text-left"}
             style={{ background: "#C0C0C0" }}
           >
             <span className={"font-black border-r-2 px-2"}>Address:</span>
@@ -84,7 +84,7 @@ export const FolderMenu: FC<propTypes> = function ({
             className={"absolute bottom-2 h-4 left-0 w-full"}
             style={{ borderTop: "1px solid" }}
           >
-            <div className={"h-6 text-left "} style={{ background: "#C0C0C0" }}>
+            <div className={"h-6 text-left"} style={{ background: "#C0C0C0" }}>
               <span className={"font-black border-r-2 px-2"}>
                 {icons.length} Objects
               </span>
