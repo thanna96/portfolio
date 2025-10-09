@@ -1,10 +1,11 @@
-import React, { FC } from "react";
-import { Avatar } from "antd";
 import {
   LinkedinOutlined,
   GithubOutlined,
   MailOutlined,
 } from "@ant-design/icons";
+import { Avatar } from "antd";
+import React, { FC } from "react";
+
 import retroBg from "../files/images/retro-background.png";
 
 export const Banner: FC = function () {

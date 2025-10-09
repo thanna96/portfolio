@@ -1,5 +1,5 @@
-import React, { FC } from "react";
 import { Tabs } from "antd";
+import React, { FC } from "react";
 const { TabPane } = Tabs;
 export const WorkExperience: FC = function () {
   return (

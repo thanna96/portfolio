@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+
 import { Desktop } from "../../pages/Desktop";
 import { WindowBootUp } from "../../pages/WindowBootUp";
 
@@ -7,8 +8,8 @@ type MainLayoutProps = {
 };
 
 export const MainLayout: FC<MainLayoutProps> = function ({
-                                                           children,
-                                                         }: MainLayoutProps) {
+  children,
+}: MainLayoutProps) {
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     setTimeout(function () {

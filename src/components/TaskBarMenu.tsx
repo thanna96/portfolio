@@ -1,10 +1,11 @@
 import React, { FC } from "react";
+
 import { TaskMenuItem } from "./TaskMenuItem";
+import linkedin from "../files/icons/linkedin.png";
+import twitter from "../files/icons/twitter.png";
+import folder from "../files/icons/Windows 2000 Closed Folder-6.png";
 import computer from "../files/icons/Windows 2000 My Computer-3.png";
 import textDocument from "../files/icons/Windows 2000 Text Document-2.png";
-import folder from "../files/icons/Windows 2000 Closed Folder-6.png";
-import twitter from "../files/icons/twitter.png";
-import linkedin from "../files/icons/linkedin.png";
 
 export const TaskBarMenu: FC = function () {
   return (

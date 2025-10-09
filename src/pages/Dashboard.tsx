@@ -1,15 +1,16 @@
 import React, { FC } from "react";
+
 import { About } from "./About";
 import { Banner } from "./Banner";
-import { WorkExperience } from "./WorkExperience";
-import { PageDivider } from "../components/PageDivider";
+import { Contact } from "./Contact";
 import { Projects } from "./Projects";
 import { Skills } from "./Skills";
-import workBg from "../files/images/retro-work.jpeg";
-import projectBg from "../files/images/project-bg.png";
-import skillsBg from "../files/images/skills-bg.jpeg";
+import { WorkExperience } from "./WorkExperience";
+import { PageDivider } from "../components/PageDivider";
 import contactBg from "../files/images/contact-bg.jpeg";
-import { Contact } from "./Contact";
+import projectBg from "../files/images/project-bg.png";
+import workBg from "../files/images/retro-work.jpeg";
+import skillsBg from "../files/images/skills-bg.jpeg";
 
 export const Dashboard: FC = function () {
   return (

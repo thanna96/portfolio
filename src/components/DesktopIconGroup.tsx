@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+
 import { DesktopIcon } from "./DesktopIcon";
 
 export const DesktopIconGroup: FC<propType> = function ({

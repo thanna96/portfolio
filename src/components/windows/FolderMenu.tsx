@@ -1,5 +1,6 @@
-import React, { FC } from "react";
 import { Modal } from "antd";
+import React, { FC } from "react";
+
 import folderIcon from "../../files/icons/Windows 2000 Closed Folder-6.png";
 import removableDriveIcon from "../../files/icons/Windows 2000 Removable Drive-2.png";
 import { DesktopIconGroup } from "../DesktopIconGroup";

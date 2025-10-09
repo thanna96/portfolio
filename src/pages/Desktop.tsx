@@ -1,17 +1,18 @@
 import React, { FC, useState } from "react";
-import { TaskBar } from "../components/TaskBar";
+
 import { DesktopIconGroup } from "../components/DesktopIconGroup";
-import folderIcon from "../files/icons/Windows 2000 Closed Folder-6.png";
-import internet from "../files/icons/Windows 2000 The Internet-2.png";
-import computer from "../files/icons/Windows 2000 My Computer-3.png";
-import { MyInformationWindow } from "../components/windows/MyInformationWindow";
-import { FolderMenu } from "../components/windows/FolderMenu";
 import {
   bookmarkIcons,
   languageIcons,
   myDocsIcons,
   projectIcons,
 } from "../components/iconsFolder";
+import { TaskBar } from "../components/TaskBar";
+import { FolderMenu } from "../components/windows/FolderMenu";
+import { MyInformationWindow } from "../components/windows/MyInformationWindow";
+import folderIcon from "../files/icons/Windows 2000 Closed Folder-6.png";
+import computer from "../files/icons/Windows 2000 My Computer-3.png";
+import internet from "../files/icons/Windows 2000 The Internet-2.png";
 
 export const Desktop: FC = function () {
   const [openedWindows, setOpenedWindows] = useState<Array<string>>([]);
@@ -71,7 +72,7 @@ export const Desktop: FC = function () {
       <MyInformationWindow
         close={(): void =>
           setOpenedWindows(
-            [...openedWindows].filter((window) => window !== "my_information")
+            [...openedWindows].filter((window) => window !== "my_information"),
           )
         }
         icon={computer}
@@ -81,7 +82,7 @@ export const Desktop: FC = function () {
         icons={myDocsIcons}
         close={(): void =>
           setOpenedWindows(
-            [...openedWindows].filter((window) => window !== "my_documents")
+            [...openedWindows].filter((window) => window !== "my_documents"),
           )
         }
         title={"My Documents"}
@@ -91,7 +92,7 @@ export const Desktop: FC = function () {
         icons={languageIcons}
         close={(): void =>
           setOpenedWindows(
-            [...openedWindows].filter((window) => window !== "my_languages")
+            [...openedWindows].filter((window) => window !== "my_languages"),
           )
         }
         title={"Favorite Languages"}
@@ -101,7 +102,7 @@ export const Desktop: FC = function () {
         icons={projectIcons}
         close={(): void =>
           setOpenedWindows(
-            [...openedWindows].filter((window) => window !== "my_projects")
+            [...openedWindows].filter((window) => window !== "my_projects"),
           )
         }
         title={"My Projects"}
@@ -111,7 +112,7 @@ export const Desktop: FC = function () {
         icons={bookmarkIcons}
         close={(): void =>
           setOpenedWindows(
-            [...openedWindows].filter((window) => window !== "my_bookmarks")
+            [...openedWindows].filter((window) => window !== "my_bookmarks"),
           )
         }
         title={"Bookmarks"}

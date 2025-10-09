@@ -1,7 +1,7 @@
-import textDocument from "../files/icons/Windows 2000 Text Document-2.png";
 import imageFile from "../files/icons/Windows 2000 Bitmap Image-4.png";
-import profile from "../files/images/profile_picture.jpg";
 import bookmarkIcon from "../files/icons/Windows 2000 Internet Document-5.png";
+import textDocument from "../files/icons/Windows 2000 Text Document-2.png";
+import profile from "../files/images/profile_picture.jpg";
 
 export const myDocsIcons = [
   {
@@ -28,7 +28,7 @@ export const languageIcons = [
     onClick: (): void => {
       window.open(
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-        "_blank"
+        "_blank",
       );
       return;
     },
@@ -79,7 +79,7 @@ export const languageIcons = [
     onClick: (): void => {
       window.open(
         "https://docs.microsoft.com/en-us/sql/?view=sql-server-ver15",
-        "_blank"
+        "_blank",
       );
       return;
     },

@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
-import startIcon from "../files/icons/start_main.0.jpg";
-import soundIcon from "../files/icons/sound_icon.png";
+
 import { TaskBarMenu } from "./TaskBarMenu";
+import soundIcon from "../files/icons/sound_icon.png";
+import startIcon from "../files/icons/start_main.0.jpg";
 
 export const TaskBar: FC = function () {
   const [menuActive, setMenuActive] = useState<boolean>(false);
@@ -9,7 +10,7 @@ export const TaskBar: FC = function () {
     new Date().toLocaleTimeString("en-us", {
       hour: "2-digit",
       minute: "2-digit",
-    })
+    }),
   );
 
   useEffect(() => {
@@ -18,7 +19,7 @@ export const TaskBar: FC = function () {
         new Date().toLocaleTimeString("en-US", {
           hour: "2-digit",
           minute: "2-digit",
-        })
+        }),
       );
     }, 1000);
 

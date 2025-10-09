@@ -1,5 +1,6 @@
-import React, { FC } from "react";
 import { Card, Col, Divider, Row } from "antd";
+import React, { FC } from "react";
+
 import profilePicture from "../files/images/profile_picture.jpg";
 
 const aboutInfo = [
