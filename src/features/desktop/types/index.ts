@@ -5,7 +5,8 @@ export type DesktopWindowId =
     | "my_documents"
     | "my_languages"
     | "my_projects"
-    | "my_bookmarks";
+    | "my_bookmarks"
+    | "internet";
 
 export type DesktopIconDescriptor = {
     id: DesktopWindowId | string;

@@ -21,7 +21,7 @@ export function DesktopIcon({
                                 isFolder,
                             }: DesktopIconProps) {
     return (
-        <div
+        <span
             onClick={() => {
                 setFocused(text);
                 onClick();
@@ -40,6 +40,6 @@ export function DesktopIcon({
             <p className={`mt-1 break-words text-sm ${!isFolder ? "text-white" : "text-black"}`}>
                 {text}
             </p>
-        </div>
+        </span>
     );
 }

@@ -13,6 +13,7 @@ import {
     projectIcons,
 } from "@/features/desktop/utils/iconData";
 import type { DesktopWindowId } from "@/features/desktop/types";
+import bookmarkIcon from "@/assets/icons/Windows 2000 Internet Document-5.png";
 
 export function Desktop() {
     const [openedWindows, setOpenedWindows] = useState<DesktopWindowId[]>([]);
@@ -28,9 +29,7 @@ export function Desktop() {
             id: "internet" as const,
             text: "Internet Explorer",
             image: desktopAssets.internetIcon,
-            onClick: () => {
-                window.open("https://www.spacejam.com/1996/", "_blank");
-            },
+            onClick: () => openWindow("internet"),
         },
         {
             id: "my_documents" as DesktopWindowId,
@@ -70,8 +69,8 @@ export function Desktop() {
 
     return (
         <>
-            <DesktopIconGroup icons={desktopIcons} isFolder={false} />
-            <TaskBar />
+            <DesktopIconGroup icons={desktopIcons} isFolder={false}/>
+            <TaskBar/>
             <InformationWindow
                 icon={desktopIcons[0].image}
                 visible={openedWindows.includes("my_information")}
@@ -101,6 +100,9 @@ export function Desktop() {
                 visible={openedWindows.includes("my_bookmarks")}
                 onClose={() => closeWindow("my_bookmarks")}
             />
+
+            {/*<iframe id="if1" width="100%" height="254"*/}
+            {/*        src="https://www.spacejam.com/1996/"></iframe>*/}
         </>
     );
 }

@@ -53,7 +53,7 @@ export function StartMenu({ onClose }: StartMenuProps) {
     return (
         <div className="absolute inset-0 z-30" onClick={onClose}>
             <div
-                className="absolute left-1 w-11/12 max-w-sm border-4 border-[#a4a4a4] bg-[#C0C0C0] p-1 shadow-2xl sm:w-2/3 md:w-1/3 lg:w-1/4"
+                className="absolute left-0 w-11/12 max-w-sm border-4 border-[#a4a4a4] bg-[#C0C0C0] p-1 shadow-2xl sm:w-2/3 md:w-1/3 lg:w-1/4"
                 onClick={(event) => event.stopPropagation()}
                 style={{ minHeight: "300px", bottom: "40px" }}
             >
