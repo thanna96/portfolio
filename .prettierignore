@@ -6,7 +6,7 @@
 **/eslint.config.js
 **/tsconfig.js
 **/tailwind
-**/tailwind.config.js
+**/tailwind.config.ts
 **/postcss.config.js
 **/gulp
 **/gulpfile.js
