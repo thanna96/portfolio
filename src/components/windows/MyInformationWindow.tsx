@@ -10,17 +10,16 @@ export const MyInformationWindow: FC<propTypes> = function ({
   return (
     <>
       <Modal
-        visible={visible}
-        centered={true}
+        open={visible}
+        centered
         closable={false}
         footer={null}
-        bodyStyle={{
-          padding: "0",
-          border: "3px solid #C0C0C0",
-          height: "500px",
-        }}
         onCancel={close}
         mask={false}
+        styles={{
+          content: { padding: 0, border: "3px solid #C0C0C0" },
+          body: { padding: 0, height: 500 },
+        }}
       >
         <div
           className={"w-full h-full shadow-2xl"}

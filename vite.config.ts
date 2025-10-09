@@ -1,22 +1,25 @@
-import path from 'path';
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import tailwindcss from '@tailwindcss/vite'
+
+const projectRootDir = fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig({
-  base: './',
-  plugins: [
-    react(),
-  ],
+  base: "./",
+  plugins: [react(), tailwindcss(),],
   server: {
-    open: true, // open the app in browser on its own, no manual intervention
+    open: true,
     port: 3000,
   },
   resolve: {
     alias: {
-      screens: path.resolve(__dirname, './src/'),
+      screens: path.resolve(projectRootDir, "./src/"),
     },
   },
   build: {
-    outDir: 'build',
+    outDir: "build",
   },
 });

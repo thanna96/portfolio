@@ -14,14 +14,13 @@ export const FolderMenu: FC<propTypes> = function ({
   return (
     <>
       <Modal
-        visible={visible}
+        open={visible}
         centered={true}
         closable={false}
         footer={null}
-        bodyStyle={{
-          padding: "0",
-          border: "3px solid #C0C0C0",
-          height: "400px",
+        styles={{
+          content: { padding: 0, border: "3px solid #C0C0C0" },
+          body: { padding: 0, height: 400 },
         }}
         onCancel={close}
         mask={false}
