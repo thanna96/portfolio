@@ -3,7 +3,7 @@
 **/package.json
 **/package-lock.json
 **/.prettierrc.json
-**/.eslintrc.js
+**/eslint.config.js
 **/tsconfig.js
 **/tailwind
 **/tailwind.config.js
