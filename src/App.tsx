@@ -10,10 +10,7 @@ export const App: FC = function () {
     <Router>
       <MainLayout>
         <Routes>
-          <Route path={"/"}>
-            {/*<Dashboard />*/}
-            <Desktop />
-          </Route>
+          <Route path="/" element={<Desktop />} />
         </Routes>
       </MainLayout>
     </Router>

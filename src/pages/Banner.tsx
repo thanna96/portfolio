@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import Avatar from "antd/es/avatar/avatar";
+import { Avatar } from "antd";
 import {
   LinkedinOutlined,
   GithubOutlined,

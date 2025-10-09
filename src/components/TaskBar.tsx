@@ -13,17 +13,16 @@ export const TaskBar: FC = function () {
   );
 
   useEffect(() => {
-    setInterval(
-      () =>
-        setTime(
-          new Date().toLocaleTimeString("en-us", {
-            hour: "2-digit",
-            minute: "2-digit",
-          })
-        ),
-      1000
-    );
-    return (): void => clearInterval();
+    const interval = window.setInterval(() => {
+      setTime(
+        new Date().toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+      );
+    }, 1000);
+
+    return () => window.clearInterval(interval);
   }, []);
   return (
     <>
