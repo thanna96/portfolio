@@ -84,7 +84,7 @@ export const WindowBootUp: FC = function () {
               })}
             </div>
           </div>
-          <p>Copyright &copy; 1996-2024 Thomas Hanna</p>
+          <p>Copyright &copy; 1996-{new Date().getFullYear()} Thomas Hanna</p>
         </div>
       </div>
     </div>

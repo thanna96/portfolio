@@ -17,13 +17,13 @@ export const DesktopIcon: FC<propType> = function ({
         onClick();
       }}
       className={classNames(
-        "cursor-pointer relative mb-2 w-[70px]",
+        "cursor-pointer relative mb-2 w-[80px]",
         isFolder && "border-black",
         focused === text && "border border-dashed",
       )}
     >
       <img className={"mx-auto h-[50px]"} src={image} alt={"start menu icon"} />
-      <div className={"overflow-x-hidden mx-auto max-w-[70px]"}>
+      <div className={"overflow-x-hidden mx-auto max-w-[80px]"}>
         <p
           className={classNames(
             "mb-0 text-center break-words",
