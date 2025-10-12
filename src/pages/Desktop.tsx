@@ -8,6 +8,7 @@ import {
   projectIcons,
 } from "../components/iconsFolder";
 import { TaskBar } from "../components/TaskBar";
+import ExplorerWindow from "../components/windows/ExplorerWindow.tsx";
 import { FolderMenu } from "../components/windows/FolderMenu";
 import { MyInformationWindow } from "../components/windows/MyInformationWindow";
 import folderIcon from "../files/icons/Windows 2000 Closed Folder-6.png";
@@ -29,7 +30,8 @@ export const Desktop: FC = function () {
       text: "Internet Explorer",
       image: internet,
       onClick: (): void => {
-        window.open("https://www.spacejam.com/1996/", "_blank");
+        setOpenedWindows([...openedWindows, "internet"]);
+        return;
       },
     },
     {
@@ -77,6 +79,15 @@ export const Desktop: FC = function () {
         }
         icon={computer}
         visible={openedWindows.includes("my_information")}
+      />
+      <ExplorerWindow
+        close={(): void =>
+          setOpenedWindows(
+            [...openedWindows].filter((window) => window !== "internet"),
+          )
+        }
+        icon={internet}
+        visible={openedWindows.includes("internet")}
       />
       <FolderMenu
         icons={myDocsIcons}
