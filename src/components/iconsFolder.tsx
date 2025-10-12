@@ -95,6 +95,14 @@ export const projectIcons = [
     },
   },
   {
+    text: "Calculator Web App",
+    image: textDocument,
+    onClick: (): void => {
+      window.open("https://github.com/thanna96/calculator-web-app", "_blank");
+      return;
+    },
+  },
+  {
     text: "Ecommerce Store",
     image: textDocument,
     onClick: (): void => {
@@ -119,10 +127,10 @@ export const projectIcons = [
     },
   },
   {
-    text: "TaskList",
+    text: "AZ-Auto",
     image: textDocument,
     onClick: (): void => {
-      window.open("https://gotesttasklist.up.railway.app/", "_blank");
+      window.open("https://az-auto.netlify.app/", "_blank");
       return;
     },
   },
