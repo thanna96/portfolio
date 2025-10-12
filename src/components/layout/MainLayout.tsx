@@ -27,7 +27,7 @@ export const MainLayout: FC<MainLayoutProps> = function ({
     <div className="min-h-screen bg-black">
       <div className={"centered-container h-screen"}>
         <div
-          className={"w-full h-90 lg:w-3/4 lg:h-3/4 m-auto relative"}
+          className={"w-full h-3/4 lg:w-3/4 lg:h-3/4 m-auto relative"}
           style={{ background: "#3A6EA5" }}
         >
           {content}

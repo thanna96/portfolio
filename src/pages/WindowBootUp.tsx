@@ -24,7 +24,7 @@ export const WindowBootUp: FC = function () {
               backgroundPositionX: "center",
               backgroundPositionY: "calc(50% - 40px)",
             }}
-            className={"md:bg-50 bg-100 h-full relative"}
+            className={"!md:bg-50 !bg-size-[75%] h-full relative"}
           >
             <h1 className={"text-xl text-center md:text-left font-black p-3"}>
               Thomas Hanna
