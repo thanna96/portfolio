@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=20.19.0"
+    "node": ">=18.17.0"
   },
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
