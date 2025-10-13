@@ -3,6 +3,9 @@
   "version": "2.1.1",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=18.17.0"
+  },
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
     "@tailwindcss/vite": "^4.1.14",
