@@ -11,6 +11,7 @@ export default defineConfig({
   base: "./",
   plugins: [react(), tailwindcss(),],
   server: {
+    host: true,
     open: true,
     port: 3000,
   },
