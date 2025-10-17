@@ -103,6 +103,14 @@ export const projectIcons = [
     },
   },
   {
+    text: "AI Risk Intelligence Platform",
+    image: textDocument,
+    onClick: (): void => {
+      window.open("https://github.com/thanna96/lenses-hackathon", "_blank");
+      return;
+    },
+  },
+  {
     text: "Ecommerce Store",
     image: textDocument,
     onClick: (): void => {
