@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
-import startIcon from "../files/icons/start_main.0.jpg";
-import soundIcon from "../files/icons/sound_icon.png";
+
 import { TaskBarMenu } from "./TaskBarMenu";
+import soundIcon from "../files/icons/sound_icon.png";
+import startIcon from "../files/icons/start_main.0.jpg";
 
 export const TaskBar: FC = function () {
   const [menuActive, setMenuActive] = useState<boolean>(false);
@@ -9,38 +10,32 @@ export const TaskBar: FC = function () {
     new Date().toLocaleTimeString("en-us", {
       hour: "2-digit",
       minute: "2-digit",
-    })
+    }),
   );
 
   useEffect(() => {
-    setInterval(
-      () =>
-        setTime(
-          new Date().toLocaleTimeString("en-us", {
-            hour: "2-digit",
-            minute: "2-digit",
-          })
-        ),
-      1000
-    );
-    return (): void => clearInterval();
+    const interval = window.setInterval(() => {
+      setTime(
+        new Date().toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      );
+    }, 1000);
+
+    return () => window.clearInterval(interval);
   }, []);
   return (
     <>
       {menuActive && <TaskBarMenu />}
       <div
-        className={"w-full m-0 absolute bottom-0 py-0.5"}
-        style={{ background: "#C0C0C0", height: "40px" }}
+        className={"absolute bottom-0 left-0 w-full bg-[#C0C0C0] py-0.5 h-10"}
       >
         <button
           onClick={(): void => setMenuActive(!menuActive)}
           className={`${menuActive && "border border-dashed border-black"}`}
         >
-          <img
-            src={startIcon}
-            alt={"start menu icon"}
-            style={{ height: "35px" }}
-          />
+          <img src={startIcon} alt={"start menu icon"} className={"h-[35px]"} />
         </button>
         <div
           style={{ height: "35px", borderColor: "#a4a4a4", borderWidth: "2px" }}
@@ -56,7 +51,7 @@ export const TaskBar: FC = function () {
             }}
             alt={"speaker"}
           />
-          <p className={"mb-0 mt-0.5 text-lg inline-block"}>{time}</p>
+          <p className={"mt-0.5 inline-block text-lg"}>{time}</p>
         </div>
       </div>
     </>

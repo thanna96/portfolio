@@ -1,5 +1,5 @@
-import React, { FC } from "react";
 import { Modal } from "antd";
+import React, { FC } from "react";
 
 export const MyInformationWindow: FC<propTypes> = function ({
   visible,
@@ -10,17 +10,16 @@ export const MyInformationWindow: FC<propTypes> = function ({
   return (
     <>
       <Modal
-        visible={visible}
-        centered={true}
+        open={visible}
+        centered
         closable={false}
         footer={null}
-        bodyStyle={{
-          padding: "0",
-          border: "3px solid #C0C0C0",
-          height: "500px",
-        }}
         onCancel={close}
         mask={false}
+        styles={{
+          content: { padding: 0, border: "3px solid #C0C0C0" },
+          body: { padding: 0, height: 500 },
+        }}
       >
         <div
           className={"w-full h-full shadow-2xl"}
@@ -61,23 +60,44 @@ export const MyInformationWindow: FC<propTypes> = function ({
             style={{ height: "375px" }}
           >
             <h1 className={"text-xl"}>Registered To:</h1>
-            <p className={"ml-4 mb-0"}>Name:Thomas Hanna</p>
-            <p className={"ml-4 mb-0"}>Job:Web Developer</p>
-            <p className={"ml-4 mb-0"}>
-              Age:{~~((Date.now() - +new Date("03/15/1996")) / 31557600000)}
+            <p className={"ml-4 !mb-0"}>
+              <b>Name:</b>Thomas Hanna
             </p>
-            <p className={"ml-4 mb-0"}>University:Rutgers NB 2020</p>
-            <p className={"ml-4 mb-0"}>Degree:Computer Science</p>
-            <p className={"ml-4 mb-0"}>Location:NYC Metro Area</p>
-            <p className={"ml-4 mb-0"}>Email:THanna96@gmail.com</p>
-            <p className={"ml-4 mb-0"}>About:</p>
+            <p className={"ml-4 !mb-0"}>
+              <b>Job:</b>Web Developer
+            </p>
+            <p className={"ml-4 !mb-0"}>
+              <b>Age:</b>
+              {~~((Date.now() - +new Date("03/15/1996")) / 31557600000)}
+            </p>
+            <p className={"ml-4 !mb-0"}>
+              <b>Location:</b>NYC Metro Area
+            </p>
+            <p className={"ml-4 !mb-0"}>
+              <b>Email:</b>THanna96@gmail.com
+            </p>
+            <p className={"ml-4 !mb-0"}>
+              <b>About:</b>
+            </p>
+            <p className={"ml-4 !mb-0"}>
+              Detail-oriented Front End Developer with 4+ years of experience
+              designing, developing, and deploying high-performance, responsive
+              web applications. Skilled in React.js, TypeScript, and Next.js
+              with strong expertise in state management, component architecture,
+              and front-end performance optimization. Adept at collaborating
+              with cross-functional teams in Agile environments to deliver
+              scalable, accessible, and SEO-optimized digital products.
+              Demonstrated success in migrating legacy codebases, building
+              reusable UI libraries, and improving load times and user
+              engagement through modern web technologies and CI/CD pipelines.
+            </p>
             <p className={"ml-4 mb-0"}>
               My interest in programming in web development officially started
               around 2015, I was struggling to find a career path in my first
               year of college and had no direction, I passed my first semester
               and was considering leaving and pursuing something else. Then, in
               my second semester I took a Java programming class and realized
-              something, programming ROCKS.
+              something, programming was something I enjoyed so much.
             </p>
             <p className={"ml-4 mb-0"}>
               Fast forward years later and I am currently working as a web

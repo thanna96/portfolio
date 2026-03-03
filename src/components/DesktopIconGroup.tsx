@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+
 import { DesktopIcon } from "./DesktopIcon";
 
 export const DesktopIconGroup: FC<propType> = function ({
@@ -12,8 +13,7 @@ export const DesktopIconGroup: FC<propType> = function ({
       <div
         className={`${
           isFolder ? "grid-rows-2" : "grid-rows-4"
-        } grid-flow-col gap-2 row-span-1`}
-        style={{ display: "inline-grid" }}
+        } grid-flow-col gap-2 row-span-1 inline-grid`}
       >
         {icons.map((icon) => {
           return (

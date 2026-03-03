@@ -1,5 +1,7 @@
 import React, { FC } from "react";
 
+import { classNames } from "../utils/classNames";
+
 export const TaskMenuItem: FC<propTypes> = function ({
   title,
   icon,
@@ -12,21 +14,12 @@ export const TaskMenuItem: FC<propTypes> = function ({
   return (
     <div
       onClick={(): void => openPage(link)}
-      className={`w-full p-1 hover:bg-blue-600 hover:text-white cursor-pointer ${
-        borderTop && "border-t-4"
-      }`}
-      style={{
-        borderColor: "#a4a4a4",
-        height: "20%",
-        bottom: "40px",
-      }}
+      className={classNames(
+        "w-full h-[20%] cursor-pointer p-1 hover:bg-blue-600 hover:text-white",
+        borderTop && "border-t-4 border-[#a4a4a4]",
+      )}
     >
-      <img
-        className={"inline"}
-        src={icon}
-        alt={"start menu icon"}
-        style={{ width: "50px" }}
-      />
+      <img className={"inline w-[50px]"} src={icon} alt={"start menu icon"} />
       <span className={"ml-4"}>{title}</span>
     </div>
   );

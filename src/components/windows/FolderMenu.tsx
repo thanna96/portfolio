@@ -1,5 +1,6 @@
-import React, { FC } from "react";
 import { Modal } from "antd";
+import React, { FC } from "react";
+
 import folderIcon from "../../files/icons/Windows 2000 Closed Folder-6.png";
 import removableDriveIcon from "../../files/icons/Windows 2000 Removable Drive-2.png";
 import { DesktopIconGroup } from "../DesktopIconGroup";
@@ -13,14 +14,13 @@ export const FolderMenu: FC<propTypes> = function ({
   return (
     <>
       <Modal
-        visible={visible}
+        open={visible}
         centered={true}
         closable={false}
         footer={null}
-        bodyStyle={{
-          padding: "0",
-          border: "3px solid #C0C0C0",
-          height: "400px",
+        styles={{
+          content: { padding: 0, border: "3px solid #C0C0C0" },
+          body: { padding: 0, height: 400 },
         }}
         onCancel={close}
         mask={false}
@@ -58,7 +58,7 @@ export const FolderMenu: FC<propTypes> = function ({
             <span className={"font-black border-r-2 px-2"}>View</span>
           </div>
           <div
-            className={"h-6 text-left border flex inline w-full"}
+            className={"flex h-6 w-full border text-left"}
             style={{ background: "#C0C0C0" }}
           >
             <span className={"font-black border-r-2 px-2"}>Address:</span>
@@ -84,7 +84,7 @@ export const FolderMenu: FC<propTypes> = function ({
             className={"absolute bottom-2 h-4 left-0 w-full"}
             style={{ borderTop: "1px solid" }}
           >
-            <div className={"h-6 text-left "} style={{ background: "#C0C0C0" }}>
+            <div className={"h-6 text-left"} style={{ background: "#C0C0C0" }}>
               <span className={"font-black border-r-2 px-2"}>
                 {icons.length} Objects
               </span>

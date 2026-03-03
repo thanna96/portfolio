@@ -1,4 +1,7 @@
 import React, { FC } from "react";
+
+import { classNames } from "../utils/classNames";
+
 export const DesktopIcon: FC<propType> = function ({
   focused,
   setFocused,
@@ -13,22 +16,19 @@ export const DesktopIcon: FC<propType> = function ({
         setFocused(text);
         onClick();
       }}
-      className={`cursor-pointer relative mb-2 ${isFolder && "border-black"} ${
-        focused === text && "border border-dashed"
-      }`}
-      style={{ width: "70px" }}
+      className={classNames(
+        "cursor-pointer relative mb-2 w-[80px]",
+        isFolder && "border-black",
+        focused === text && "border border-dashed",
+      )}
     >
-      <img
-        className={"mx-auto"}
-        src={image}
-        alt={"start menu icon"}
-        style={{ height: "50px" }}
-      />
-      <div style={{ maxWidth: "70px" }} className={"overflow-x-hidden mx-auto"}>
+      <img className={"mx-auto h-[50px]"} src={image} alt={"start menu icon"} />
+      <div className={"overflow-x-hidden mx-auto max-w-[80px]"}>
         <p
-          className={`mb-0 text-center ${
-            !isFolder && "text-white"
-          } break-words`}
+          className={classNames(
+            "mb-0 text-center break-words",
+            !isFolder && "text-white",
+          )}
         >
           {text}
         </p>

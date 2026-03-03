@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+
 import logo from "../files/icons/windows-logo.jpeg";
 
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -23,7 +24,7 @@ export const WindowBootUp: FC = function () {
               backgroundPositionX: "center",
               backgroundPositionY: "calc(50% - 40px)",
             }}
-            className={"md:bg-50 bg-100 h-full relative"}
+            className={"!md:bg-size-[50%] !bg-size-[60%] h-full relative"}
           >
             <h1 className={"text-xl text-center md:text-left font-black p-3"}>
               Thomas Hanna
@@ -83,7 +84,7 @@ export const WindowBootUp: FC = function () {
               })}
             </div>
           </div>
-          <p>Copyright &copy; 1996-2024 Thomas Hanna</p>
+          <p>Copyright &copy; 1996-{new Date().getFullYear()} Thomas Hanna</p>
         </div>
       </div>
     </div>
