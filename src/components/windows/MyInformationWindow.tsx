@@ -17,7 +17,7 @@ export const MyInformationWindow: FC<propTypes> = function ({
         onCancel={close}
         mask={false}
         styles={{
-          content: { padding: 0, border: "3px solid #C0C0C0" },
+         container: { padding: 0, border: "3px solid #C0C0C0" },
           body: { padding: 0, height: 500 },
         }}
       >
