@@ -19,7 +19,7 @@ export const FolderMenu: FC<propTypes> = function ({
         closable={false}
         footer={null}
         styles={{
-          content: { padding: 0, border: "3px solid #C0C0C0" },
+         container: { padding: 0, border: "3px solid #C0C0C0" },
           body: { padding: 0, height: 400 },
         }}
         onCancel={close}
