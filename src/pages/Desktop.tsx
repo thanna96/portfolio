@@ -194,9 +194,7 @@ export const Desktop: FC = function () {
             maximize: () => dispatch({ type: "maximize", id }),
           }}
         >
-          <Suspense fallback={null}>
-            {renderWindow(id)}
-          </Suspense>
+          <Suspense fallback={null}>{renderWindow(id)}</Suspense>
         </WindowContext.Provider>
       ))}
     </div>
