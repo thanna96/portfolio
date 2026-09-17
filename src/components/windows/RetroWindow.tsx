@@ -12,6 +12,7 @@ type RetroWindowProps = {
   footer?: ReactNode;
   children: ReactNode;
   height?: number;
+  contentClassName?: string;
 };
 
 /** Shared window chrome; Ant Design provides dialog naming, focus and Escape handling. */
@@ -24,6 +25,7 @@ export function RetroWindow({
   footer,
   children,
   height = 500,
+  contentClassName = "border border-black bg-white p-2 shadow-inner",
 }: RetroWindowProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const windowRef = useRef<HTMLDivElement>(null);
@@ -159,7 +161,7 @@ export function RetroWindow({
         style={{ height: `min(${height}px, calc(100dvh - 100px))` }}
       >
         {toolbar && <div className="shrink-0">{toolbar}</div>}
-        <div className="m-4 min-h-0 flex-1 overflow-auto border border-black bg-white p-2 shadow-inner">
+        <div className={`m-4 min-h-0 flex-1 overflow-auto ${contentClassName}`}>
           {children}
         </div>
         {footer && <div className="shrink-0">{footer}</div>}

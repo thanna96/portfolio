@@ -77,13 +77,17 @@ describe("retro windows", () => {
     expect(close).toHaveBeenCalledOnce();
   });
 
-  it("opens Space Jam with a native link instead of a blocked iframe", () => {
+  it("renders the local classic Google page without external navigation", () => {
     render(<ExplorerWindow visible icon="explorer.png" close={vi.fn()} />);
-    const link = screen.getByRole("link", { name: "Open Space Jam website" });
-    expect(link).toHaveAttribute("href", "https://www.spacejam.com/1996/");
-    expect(link).not.toHaveAttribute("target");
-    expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    expect(screen.getByRole("heading", { name: "Google" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Google Search" }),
+    ).toBeDisabled();
+    expect(
+      screen.getByRole("button", { name: "I'm Feeling Lucky" }),
+    ).toBeDisabled();
     expect(document.querySelector("iframe")).not.toBeInTheDocument();
+    expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });
 
   it("changes age on the birthday rather than an average year boundary", () => {

@@ -22,3 +22,51 @@ progress {
 
 /* Keep native document links consistent with classic desktop labels. */
 a { color: inherit; }
+
+/* Windows 2000 property-sheet styling for the personal information dialog. */
+.about-properties {
+  margin: 12px !important;
+  background: #c0c0c0;
+  color: #000;
+  font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.properties-tab { display: flex; padding-left: 2px; }
+.properties-tab > span {
+  position: relative;
+  z-index: 1;
+  margin-bottom: -2px;
+  padding: 4px 12px;
+  border: 2px solid;
+  border-color: #fff #808080 #c0c0c0 #fff;
+  background: #c0c0c0;
+}
+.properties-panel {
+  padding: 16px 12px;
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+}
+.properties-heading { display: flex; align-items: center; gap: 18px; }
+.properties-heading img { width: 48px; height: 48px; object-fit: contain; image-rendering: pixelated; }
+.properties-heading h1 { margin: 0 0 4px; font-size: 18px; font-weight: 700; }
+.properties-heading p { margin: 0; }
+.properties-divider { margin: 16px 0; border-top: 1px solid #808080; border-bottom: 1px solid #fff; }
+.properties-group { min-width: 0; margin: 12px 0 0; padding: 10px; border: 2px groove #fff; }
+.properties-group legend { padding: 0 4px; font-size: 12px; }
+.properties-details { display: grid; grid-template-columns: 62px minmax(0, 1fr); gap: 3px 8px; margin: 0; }
+.properties-details dt, .properties-details dd { margin: 0; overflow-wrap: anywhere; }
+.properties-about p { margin: 0 0 10px; }
+.properties-about p:last-child { margin-bottom: 0; }
+.classic-dialog-button {
+  height: 26px;
+  width: 76px;
+  border: 2px solid;
+  border-color: #fff #404040 #404040 #fff;
+  background: #c0c0c0;
+  box-shadow: inset -1px -1px #808080;
+  color: #000;
+  font: 12px Tahoma, Arial, sans-serif;
+}
+.classic-dialog-button:active { border-color: #404040 #fff #fff #404040; box-shadow: inset 1px 1px #808080; }
+.classic-dialog-button:focus-visible { outline: 1px dotted #000; outline-offset: -5px; }
