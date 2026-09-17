@@ -38,15 +38,19 @@ export function ExplorerWindow({ visible, icon, close }: ExplorerWindowProps) {
         </>
       }
     >
-      {visible && (
-        <iframe
-          src={SPACE_JAM_URL}
-          title="Space Jam (1996) website"
-          className="h-full min-h-0 w-full border-0"
-          allow="fullscreen"
-          loading="lazy"
-        />
-      )}
+      <div className="flex h-full flex-col items-center justify-center gap-4 p-4 text-center text-black">
+        <h1 className="text-3xl font-black">Space Jam (1996)</h1>
+        <p>Explore the original movie website.</p>
+        <a
+          href={SPACE_JAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="border-2 border-black bg-[#C0C0C0] px-4 py-2 font-black text-black! shadow"
+        >
+          Open Space Jam website
+        </a>
+        <p className="text-sm">Opens in a new browser tab.</p>
+      </div>
     </RetroWindow>
   );
 }

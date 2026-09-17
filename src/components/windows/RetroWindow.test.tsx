@@ -77,18 +77,13 @@ describe("retro windows", () => {
     expect(close).toHaveBeenCalledOnce();
   });
 
-  it("unmounts the external website as soon as the explorer closes", () => {
-    const close = vi.fn();
-    const { rerender } = render(
-      <ExplorerWindow visible icon="explorer.png" close={close} />,
-    );
-    expect(screen.getByTitle("Space Jam (1996) website")).toBeInTheDocument();
-    rerender(
-      <ExplorerWindow visible={false} icon="explorer.png" close={close} />,
-    );
-    expect(
-      screen.queryByTitle("Space Jam (1996) website"),
-    ).not.toBeInTheDocument();
+  it("opens Space Jam with a native link instead of a blocked iframe", () => {
+    render(<ExplorerWindow visible icon="explorer.png" close={vi.fn()} />);
+    const link = screen.getByRole("link", { name: "Open Space Jam website" });
+    expect(link).toHaveAttribute("href", "https://www.spacejam.com/1996/");
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    expect(document.querySelector("iframe")).not.toBeInTheDocument();
   });
 
   it("changes age on the birthday rather than an average year boundary", () => {

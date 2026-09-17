@@ -40,11 +40,11 @@ The development server runs at http://localhost:3000. Run `npm run build` to cre
 - `public/Thomas_Hanna_Resume.pdf` is the single résumé source. Replace it to update both résumé links.
 - `src/tailwind.css` imports Tailwind and the Ant Design reset. `src/App.css` contains the small global style layer.
 
-Native buttons open desktop windows; anchors open documents and external links. Start-menu navigation closes on link activation, outside clicks, or Escape. The taskbar clock updates at minute boundaries. Drag a window by its blue title bar with a mouse or touch; viewport bounds keep it reachable, and resizing the browser recenters it. Window content scrolls within the available viewport, and the external iframe is mounted only while its window is open.
+Native buttons open desktop windows; anchors open documents and external links. Start-menu navigation closes on link activation, outside clicks, or Escape. The taskbar clock updates at minute boundaries. Drag a window by its blue title bar with a mouse or touch; viewport bounds keep it reachable, and resizing the browser recenters it. Window content scrolls within the available viewport, and Space Jam opens in a new browser tab because its server disallows embedding on other sites.
 
 ## Validation and deployment
 
-Vitest uses jsdom and the jest-dom matchers registered in `src/setupTests.ts`. Tests cover startup completion and cancellation, keyboard interactions, duplicate window prevention, dialog naming, iframe teardown, and birthday calculation.
+Vitest uses jsdom and the jest-dom matchers registered in `src/setupTests.ts`. Tests cover startup completion and cancellation, keyboard interactions, duplicate window prevention, dialog naming, Space Jam link behavior, and birthday calculation.
 
 Run `npm run check` before pushing. Netlify uses the Node version in `netlify.toml`, runs the build, and publishes `dist/`.
 
