@@ -33,9 +33,15 @@ The development server runs at http://localhost:3000. Run `npm run build` to cre
 
 - `src/App.tsx` renders the desktop without a router; this portfolio has a single page.
 - `src/components/layout/MainLayout.tsx` preserves the original five-second startup animation with timer cleanup.
-- `src/pages/Desktop.tsx` manages unique, typed window IDs.
-- `src/components/windows/RetroWindow.tsx` provides accessible, nonmodal window chrome with focus, Escape, drag, and resize behavior.
-- `src/components/iconsFolder.tsx` defines document, project, language, and social links as typed data.
+- `src/pages/Desktop.tsx` connects the desktop icons, taskbar, and window state.
+- `src/utils/windowManager.ts` handles open, close, focus, minimize, maximize, and taskbar actions.
+- `src/utils/desktopConfig.ts` defines window titles, icons, and desktop shortcut order.
+- `src/components/windows/DesktopWindow.tsx` selects the appropriate lazy-loaded window.
+- `src/components/windows/RetroWindow.tsx` renders nonmodal window chrome and handles focus and Escape.
+- `src/hooks/useWindowGeometry.ts` handles pointer gestures and keyboard resizing; `src/utils/windowGeometry.ts` contains desktop bounds calculations.
+- `src/hooks/useDesktopBounds.ts` measures the blue desktop; `src/hooks/useTaskbarClock.ts` owns the clock timer.
+- `src/components/windows/minesweeper/MineCell.tsx` renders each cell; `game.ts` contains the game rules.
+- `src/components/iconsFolder.ts` defines document, project, language, and social links as typed data.
 - `src/utils/desktopTypes.ts` holds shared icon and window types.
 - `public/Thomas_Hanna_Resume.pdf` is the single résumé source. Replace it to update both résumé links.
 - `src/tailwind.css` imports Tailwind and the Ant Design reset. `src/App.css` contains the small global style layer.

@@ -1,10 +1,8 @@
 import { RetroWindow, WindowMenu } from "./RetroWindow";
 
-type ExplorerWindowProps = {
-  icon: string;
-  visible: boolean;
-  close: () => void;
-};
+import type { WindowProps } from "./windowTypes";
+
+type ExplorerWindowProps = WindowProps & { icon: string };
 
 export function ExplorerWindow({ visible, icon, close }: ExplorerWindowProps) {
   if (!visible) return null;

@@ -2,12 +2,29 @@ import { RetroWindow, WindowMenu } from "./RetroWindow";
 import imageIcon from "../../files/icons/Windows 2000 Bitmap Image-4.png";
 import profile from "../../files/images/profile_picture.jpg";
 
-type PaintWindowProps = {
-  visible: boolean;
-  close: () => void;
-};
+import type { WindowProps } from "./windowTypes";
 
-export default function PaintWindow({ visible, close }: PaintWindowProps) {
+const TOOL_SYMBOLS = ["✎", "▧", "A", "╱", "□", "○", "⌕", "▰"];
+const PALETTE_COLORS = [
+  "#000",
+  "#808080",
+  "#800000",
+  "#808000",
+  "#008000",
+  "#008080",
+  "#000080",
+  "#800080",
+  "#fff",
+  "#c0c0c0",
+  "#f00",
+  "#ff0",
+  "#0f0",
+  "#0ff",
+  "#00f",
+  "#f0f",
+];
+
+export default function PaintWindow({ visible, close }: WindowProps) {
   return (
     <RetroWindow
       visible={visible}
@@ -29,7 +46,7 @@ export default function PaintWindow({ visible, close }: PaintWindowProps) {
     >
       <div className="paint-editor">
         <aside className="paint-toolbox" aria-hidden="true">
-          {["✎", "▧", "A", "╱", "□", "○", "⌕", "▰"].map((tool, index) => (
+          {TOOL_SYMBOLS.map((tool, index) => (
             <span
               className={index === 0 ? "paint-tool selected" : "paint-tool"}
               key={tool}
@@ -45,24 +62,7 @@ export default function PaintWindow({ visible, close }: PaintWindowProps) {
       <div className="paint-palette" aria-hidden="true">
         <span className="paint-current-color" />
         <div>
-          {[
-            "#000",
-            "#808080",
-            "#800000",
-            "#808000",
-            "#008000",
-            "#008080",
-            "#000080",
-            "#800080",
-            "#fff",
-            "#c0c0c0",
-            "#f00",
-            "#ff0",
-            "#0f0",
-            "#0ff",
-            "#00f",
-            "#f0f",
-          ].map((color) => (
+          {PALETTE_COLORS.map((color) => (
             <span key={color} style={{ background: color }} />
           ))}
         </div>

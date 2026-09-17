@@ -1,10 +1,8 @@
 import { RetroWindow } from "./RetroWindow";
 
-type MyInformationWindowProps = {
-  icon: string;
-  visible: boolean;
-  close: () => void;
-};
+import type { WindowProps } from "./windowTypes";
+
+type MyInformationWindowProps = WindowProps & { icon: string };
 
 export function getAge(today: Date) {
   const birthdayHasPassed =

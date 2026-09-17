@@ -7,7 +7,10 @@ import {
   revealCell,
   toggleFlag,
 } from "./minesweeper/game";
+import { MineCell } from "./minesweeper/MineCell";
 import { RetroWindow } from "./RetroWindow";
+
+import type { WindowProps } from "./windowTypes";
 import "./minesweeper/Minesweeper.css";
 
 function counter(value: number) {
@@ -16,13 +19,7 @@ function counter(value: number) {
     : String(value).padStart(3, "0");
 }
 
-export default function MinesweeperWindow({
-  visible,
-  close,
-}: {
-  visible: boolean;
-  close: () => void;
-}) {
+export default function MinesweeperWindow({ visible, close }: WindowProps) {
   const [game, setGame] = useState(createGame);
   const [seconds, setSeconds] = useState(0);
   const [flagMode, setFlagMode] = useState(false);
@@ -39,12 +36,20 @@ export default function MinesweeperWindow({
     setGame(createGame());
     setSeconds(0);
   };
-  const message =
-    game.status === "won"
-      ? "You win! All mines found."
-      : game.status === "lost"
-        ? "Game over. Try again!"
-        : "Find all 10 mines.";
+  const statusMessages = {
+    ready: "Find all 10 mines.",
+    playing: "Find all 10 mines.",
+    won: "You win! All mines found.",
+    lost: "Game over. Try again!",
+  };
+  const statusFaces = { ready: "☺", playing: "☺", won: "😎", lost: "☹" };
+  const gameOver = game.status === "won" || game.status === "lost";
+  const reveal = (index: number) =>
+    setGame((current) =>
+      flagMode ? toggleFlag(current, index) : revealCell(current, index),
+    );
+  const flag = (index: number) =>
+    setGame((current) => toggleFlag(current, index));
   const flags = game.cells.filter((cell) => cell.flagged).length;
 
   return (
@@ -77,13 +82,7 @@ export default function MinesweeperWindow({
             aria-label="Start a new Minesweeper game"
             onClick={reset}
           >
-            <span aria-hidden="true">
-              {game.status === "lost"
-                ? "☹"
-                : game.status === "won"
-                  ? "😎"
-                  : "☺"}
-            </span>
+            <span aria-hidden="true">{statusFaces[game.status]}</span>
           </button>
           <output
             className="mine-counter"
@@ -99,54 +98,20 @@ export default function MinesweeperWindow({
                 .slice(row * BOARD_SIZE, (row + 1) * BOARD_SIZE)
                 .map((cell, column) => {
                   const index = row * BOARD_SIZE + column;
-                  const lostFlag =
-                    game.status === "lost" && cell.flagged && !cell.mine;
-                  const description = lostFlag
-                    ? "incorrect flag"
-                    : cell.revealed
-                      ? cell.mine
-                        ? "mine"
-                        : `${cell.adjacent} neighboring mines`
-                      : cell.flagged
-                        ? "flagged"
-                        : "hidden";
                   return (
-                    <button
-                      type="button"
-                      role="gridcell"
+                    <MineCell
                       key={index}
-                      className={`mine-cell ${cell.revealed ? "revealed" : ""} ${game.exploded === index ? "exploded" : ""}`}
-                      data-number={cell.adjacent}
-                      aria-label={`Row ${row + 1}, column ${column + 1}, ${description}`}
-                      disabled={
-                        cell.revealed ||
-                        game.status === "won" ||
-                        game.status === "lost"
+                      cell={cell}
+                      row={row}
+                      column={column}
+                      gameOver={gameOver}
+                      incorrectFlag={
+                        game.status === "lost" && cell.flagged && !cell.mine
                       }
-                      onClick={() =>
-                        setGame(
-                          flagMode
-                            ? toggleFlag(game, index)
-                            : revealCell(game, index),
-                        )
-                      }
-                      onContextMenu={(event) => {
-                        event.preventDefault();
-                        setGame((current) => toggleFlag(current, index));
-                      }}
-                    >
-                      <span aria-hidden="true">
-                        {lostFlag
-                          ? "×"
-                          : cell.revealed
-                            ? cell.mine
-                              ? "✹"
-                              : cell.adjacent || ""
-                            : cell.flagged
-                              ? "⚑"
-                              : ""}
-                      </span>
-                    </button>
+                      exploded={game.exploded === index}
+                      onReveal={() => reveal(index)}
+                      onFlag={() => flag(index)}
+                    />
                   );
                 })}
             </div>
@@ -161,7 +126,7 @@ export default function MinesweeperWindow({
           ⚑ Flag mode: {flagMode ? "On" : "Off"}
         </button>
         <p className="mine-status" role="status">
-          {message}
+          {statusMessages[game.status]}
         </p>
         <p className="mine-help">
           Click to reveal. Right-click or use flag mode to mark mines.

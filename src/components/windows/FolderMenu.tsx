@@ -3,13 +3,12 @@ import folderIcon from "../../files/icons/Windows 2000 Closed Folder-6.png";
 import removableDriveIcon from "../../files/icons/Windows 2000 Removable Drive-2.png";
 import { DesktopIconGroup } from "../DesktopIconGroup";
 
-import type { ComponentProps } from "react";
+import type { WindowProps } from "./windowTypes";
+import type { DesktopIconDefinition } from "../../utils/desktopTypes";
 
-type FolderMenuProps = {
-  visible: boolean;
+type FolderMenuProps = WindowProps & {
   title: string;
-  close: () => void;
-  icons: ComponentProps<typeof DesktopIconGroup>["icons"];
+  icons: DesktopIconDefinition[];
 };
 
 export function FolderMenu({ visible, close, title, icons }: FolderMenuProps) {

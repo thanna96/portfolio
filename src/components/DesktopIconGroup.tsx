@@ -1,21 +1,17 @@
-import { type FC, useState } from "react";
+import { useState } from "react";
 
 import { DesktopIcon } from "./DesktopIcon";
 
 import type { DesktopIconDefinition } from "../utils/desktopTypes";
 
-export const DesktopIconGroup: FC<propType> = function ({
-  icons,
-  isFolder,
-}: propType) {
+export function DesktopIconGroup({ icons, isFolder }: DesktopIconGroupProps) {
+  const rowClassName = isFolder ? "grid-rows-2" : "grid-rows-4";
   const [focused, setFocused] = useState<string>("");
 
   return (
-    <div className={"m-4"}>
+    <div className="m-4">
       <div
-        className={`${
-          isFolder ? "grid-rows-2" : "grid-rows-4"
-        } grid-flow-col gap-2 row-span-1 inline-grid`}
+        className={`${rowClassName} grid-flow-col gap-2 row-span-1 inline-grid`}
       >
         {icons.map((icon) => (
           <DesktopIcon
@@ -29,11 +25,11 @@ export const DesktopIconGroup: FC<propType> = function ({
       </div>
     </div>
   );
-};
+}
 
 export default DesktopIconGroup;
 
-type propType = {
+type DesktopIconGroupProps = {
   icons: DesktopIconDefinition[];
   isFolder: boolean;
 };

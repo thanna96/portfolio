@@ -1,41 +1,48 @@
 import { classNames } from "../utils/classNames";
 
-import type { FC } from "react";
-
-export const TaskMenuItem: FC<propTypes> = function ({
+export function TaskMenuItem({
   title,
   icon,
   borderTop,
   link,
   onNavigate,
   onActivate,
-}: propTypes) {
-  const Tag = onActivate ? "button" : "a";
-  return (
-    <Tag
-      type={onActivate ? "button" : undefined}
-      href={onActivate ? undefined : link}
-      target={
-        onActivate || link.startsWith("mailto:") || link === "/"
-          ? undefined
-          : "_blank"
-      }
-      rel="noopener noreferrer"
-      onClick={() => {
-        onActivate?.();
-        onNavigate?.();
-      }}
-      className={classNames(
-        "classic-start-item text-black! hover:text-white! focus-visible:text-white!",
-        borderTop && "start-item-separator",
-      )}
-    >
+}: TaskMenuItemProps) {
+  const className = classNames(
+    "classic-start-item text-black! hover:text-white! focus-visible:text-white!",
+    borderTop && "start-item-separator",
+  );
+  const content = (
+    <>
       <img className="start-item-icon" src={icon} alt="" />
       <span className="start-item-label">{title}</span>
-    </Tag>
+    </>
   );
-};
-type propTypes = {
+  const activateItem = () => {
+    onActivate?.();
+    onNavigate?.();
+  };
+  if (onActivate) {
+    return (
+      <button type="button" className={className} onClick={activateItem}>
+        {content}
+      </button>
+    );
+  }
+  const opensNewTab = !link.startsWith("mailto:") && link !== "/";
+  return (
+    <a
+      href={link}
+      target={opensNewTab ? "_blank" : undefined}
+      rel="noopener noreferrer"
+      className={className}
+      onClick={activateItem}
+    >
+      {content}
+    </a>
+  );
+}
+type TaskMenuItemProps = {
   title: string;
   icon: string;
   borderTop: boolean;

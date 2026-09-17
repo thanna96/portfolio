@@ -18,56 +18,68 @@ export const initialWindows: WindowState = {
   maximized: [],
   active: null,
 };
-export function windowReducer(
-  state: WindowState,
-  action: WindowAction,
-): WindowState {
-  const { id, type } = action;
-  if (
-    type === "open" ||
-    type === "focus" ||
-    (type === "taskbar" &&
-      (state.active !== id || state.minimized.includes(id)))
-  ) {
-    return {
-      ...state,
-      opened: state.opened.includes(id) ? state.opened : [...state.opened, id],
-      order: [...state.order.filter((item) => item !== id), id],
-      minimized: state.minimized.filter((item) => item !== id),
-      active: id,
-    };
-  }
-  if (type === "maximize") {
-    const focused = windowReducer(state, { type: "focus", id });
-    return {
-      ...focused,
-      maximized: state.maximized.includes(id)
-        ? state.maximized.filter((item) => item !== id)
-        : [...state.maximized, id],
-    };
-  }
-  const opened =
-    type === "close"
-      ? state.opened.filter((item) => item !== id)
-      : state.opened;
-  const order =
-    type === "close" ? state.order.filter((item) => item !== id) : state.order;
-  const minimized =
-    type === "close"
-      ? state.minimized.filter((item) => item !== id)
-      : [...new Set([...state.minimized, id])];
+function activateWindow(state: WindowState, id: WindowId): WindowState {
   return {
-    opened,
-    order,
+    ...state,
+    opened: state.opened.includes(id) ? state.opened : [...state.opened, id],
+    order: [...state.order.filter((windowId) => windowId !== id), id],
+    minimized: state.minimized.filter((windowId) => windowId !== id),
+    active: id,
+  };
+}
+
+function nextActiveWindow(order: WindowId[], minimized: WindowId[]) {
+  return [...order].reverse().find((id) => !minimized.includes(id)) ?? null;
+}
+
+function minimizeWindow(state: WindowState, id: WindowId): WindowState {
+  const minimized = [...new Set([...state.minimized, id])];
+  return {
+    ...state,
     minimized,
-    maximized:
-      type === "close"
-        ? state.maximized.filter((item) => item !== id)
-        : state.maximized,
     active:
       state.active === id
-        ? ([...order].reverse().find((item) => !minimized.includes(item)) ??
-          null)
+        ? nextActiveWindow(state.order, minimized)
         : state.active,
   };
+}
+
+function closeWindow(state: WindowState, id: WindowId): WindowState {
+  const order = state.order.filter((windowId) => windowId !== id);
+  const minimized = state.minimized.filter((windowId) => windowId !== id);
+  return {
+    opened: state.opened.filter((windowId) => windowId !== id),
+    order,
+    minimized,
+    maximized: state.maximized.filter((windowId) => windowId !== id),
+    active:
+      state.active === id ? nextActiveWindow(order, minimized) : state.active,
+  };
+}
+
+export function windowReducer(
+  state: WindowState,
+  { type, id }: WindowAction,
+): WindowState {
+  switch (type) {
+    case "open":
+    case "focus":
+      return activateWindow(state, id);
+    case "minimize":
+      return minimizeWindow(state, id);
+    case "close":
+      return closeWindow(state, id);
+    case "maximize":
+      return {
+        ...activateWindow(state, id),
+        maximized: state.maximized.includes(id)
+          ? state.maximized.filter((windowId) => windowId !== id)
+          : [...state.maximized, id],
+      };
+    case "taskbar":
+      // Clicking the active taskbar button hides it; other buttons restore it.
+      if (state.active === id && !state.minimized.includes(id))
+        return minimizeWindow(state, id);
+      return activateWindow(state, id);
+  }
 }

@@ -3,14 +3,17 @@ import { useEffect, useRef, useState } from "react";
 import { TaskBarMenu } from "./TaskBarMenu";
 import soundIcon from "../files/icons/sound_icon.png";
 import startIcon from "../files/icons/start_main.0.jpg";
+import { useTaskbarClock } from "../hooks/useTaskbarClock";
 
 import type { WindowId } from "../utils/desktopTypes";
 
-const formatTime = () =>
-  new Date().toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+type TaskBarProps = {
+  onOpenResume: () => void;
+  onOpenContact: () => void;
+  windows?: { id: WindowId; title: string; icon: string; minimized: boolean }[];
+  activeWindow?: WindowId | null;
+  onWindowClick?: (id: WindowId) => void;
+};
 
 export function TaskBar({
   onOpenResume,
@@ -18,32 +21,11 @@ export function TaskBar({
   windows = [],
   activeWindow = null,
   onWindowClick,
-}: {
-  onOpenResume: () => void;
-  onOpenContact: () => void;
-  windows?: { id: WindowId; title: string; icon: string; minimized: boolean }[];
-  activeWindow?: WindowId | null;
-  onWindowClick?: (id: WindowId) => void;
-}) {
+}: TaskBarProps) {
   const [menuActive, setMenuActive] = useState(false);
-  const [time, setTime] = useState(formatTime);
+  const time = useTaskbarClock();
   const navigationRef = useRef<HTMLDivElement>(null);
   const startRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    let interval: number | undefined;
-    const timeout = window.setTimeout(
-      () => {
-        setTime(formatTime());
-        interval = window.setInterval(() => setTime(formatTime()), 60000);
-      },
-      60000 - (Date.now() % 60000),
-    );
-    return () => {
-      window.clearTimeout(timeout);
-      window.clearInterval(interval);
-    };
-  }, []);
 
   useEffect(() => {
     if (!menuActive) return;

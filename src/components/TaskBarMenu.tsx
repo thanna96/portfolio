@@ -5,8 +5,6 @@ import folder from "../files/icons/Windows 2000 Closed Folder-6.png";
 import computer from "../files/icons/Windows 2000 My Computer-3.png";
 import textDocument from "../files/icons/Windows 2000 Text Document-2.png";
 
-import type { FC } from "react";
-
 const menuItems = [
   {
     id: "contact",
@@ -45,11 +43,20 @@ const menuItems = [
   },
 ];
 
-export const TaskBarMenu: FC<{
+type TaskBarMenuProps = {
   onNavigate?: () => void;
   onOpenResume: () => void;
   onOpenContact: () => void;
-}> = function ({ onNavigate, onOpenResume, onOpenContact }) {
+};
+export function TaskBarMenu({
+  onNavigate,
+  onOpenResume,
+  onOpenContact,
+}: TaskBarMenuProps) {
+  const actions: Record<string, (() => void) | undefined> = {
+    resume: onOpenResume,
+    contact: onOpenContact,
+  };
   return (
     <div aria-label="Start menu" className="classic-start-menu">
       <div className="start-branding" aria-hidden="true">
@@ -63,17 +70,11 @@ export const TaskBarMenu: FC<{
           <TaskMenuItem
             key={id}
             {...item}
-            onActivate={
-              id === "resume"
-                ? onOpenResume
-                : id === "contact"
-                  ? onOpenContact
-                  : undefined
-            }
+            onActivate={actions[id]}
             onNavigate={onNavigate}
           />
         ))}
       </div>
     </div>
   );
-};
+}

@@ -66,7 +66,7 @@ describe("Desktop windows", () => {
     render(<Desktop />);
     const documents = screen.getByRole("button", { name: "My Documents" });
     await user.click(documents);
-    // Cold transformation of the lazy Ant Design chunk can exceed the default
+    // Cold transformation of lazy window modules can exceed the default
     // one-second query timeout on a shared CI runner.
     const dialog = await screen.findByRole(
       "dialog",

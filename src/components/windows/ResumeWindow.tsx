@@ -2,13 +2,9 @@ import resumePages from "./resumePages.json";
 import { RetroWindow, WindowMenu } from "./RetroWindow";
 import documentIcon from "../../files/icons/Windows 2000 Text Document-2.png";
 
-export default function ResumeWindow({
-  visible,
-  close,
-}: {
-  visible: boolean;
-  close: () => void;
-}) {
+import type { WindowProps } from "./windowTypes";
+
+export default function ResumeWindow({ visible, close }: WindowProps) {
   return (
     <RetroWindow
       visible={visible}

@@ -3,16 +3,14 @@ import { useState } from "react";
 import { RetroWindow, WindowMenu } from "./RetroWindow";
 import documentIcon from "../../files/icons/Windows 2000 Text Document-2.png";
 
-export default function ContactWindow({
-  visible,
-  close,
-}: {
-  visible: boolean;
-  close: () => void;
-}) {
+import type { WindowProps } from "./windowTypes";
+
+const CONTACT_EMAIL = "thanna96@gmail.com";
+
+export default function ContactWindow({ visible, close }: WindowProps) {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const recipient = "thanna96@gmail.com";
+  const recipient = CONTACT_EMAIL;
   const mailto = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
   const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
 

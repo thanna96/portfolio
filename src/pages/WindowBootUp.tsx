@@ -1,16 +1,18 @@
 import logo from "../files/icons/windows-logo.jpeg";
 
-const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const progressSegments = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 export function WindowBootUp({ progress }: { progress: number }) {
-  const count = progress / 10;
+  const visibleSegments = progressSegments.filter(
+    (segment) => segment < progress / 10,
+  );
   return (
-    <div className={"h-full relative"}>
-      <div className={"centered-container h-full"}>
+    <div className="h-full relative">
+      <div className="centered-container h-full">
         <div
           className={`bg-white relative border-black border-2 text-center h-3/4 md:h-4/6 m-auto w-3/4`}
         >
           <div className="flex h-full min-h-0 flex-col">
-            <h1 className={"text-xl text-center md:text-left font-black p-3"}>
+            <h1 className="text-xl text-center md:text-left font-black p-3">
               Thomas Hanna
               <br />
               Software Developer
@@ -28,38 +30,32 @@ export function WindowBootUp({ progress }: { progress: number }) {
               Welcome to my website!
             </h1>
             <div
-              className={"w-full m-0 shrink-0 border-t-8 border-blue-800"}
+              className="w-full m-0 shrink-0 border-t-8 border-blue-800"
               style={{ background: "#C0C0C0", height: "80px" }}
             >
-              <div className={"mx-auto text-center mt-2"}>Starting Up...</div>
+              <div className="mx-auto text-center mt-2">Starting Up...</div>
             </div>
           </div>
         </div>
       </div>
       <div
-        className={"w-full m-0 absolute bottom-0 border-t-8 border-blue-800"}
+        className="w-full m-0 absolute bottom-0 border-t-8 border-blue-800"
         style={{ background: "#C0C0C0", height: "80px" }}
       >
-        <div className={"mx-auto text-center mt-2 relative"}>
+        <div className="mx-auto text-center mt-2 relative">
           Starting Up...
           <div
             style={{ width: "200px" }}
-            className={
-              "align-bottom overflow-hidden text-left border border-gray-400 shadow-inner inline-block ml-2"
-            }
+            className="align-bottom overflow-hidden text-left border border-gray-400 shadow-inner inline-block ml-2"
           >
-            <div className={"relative h-6"}>
-              {numbers.map((i, index) => {
-                return (
-                  i < count && (
-                    <div
-                      key={index}
-                      style={{ width: "20px" }}
-                      className={"bg-blue-400 h-6 mr-0.5 relative inline-block"}
-                    />
-                  )
-                );
-              })}
+            <div className="relative h-6">
+              {visibleSegments.map((segment) => (
+                <div
+                  key={segment}
+                  style={{ width: "20px" }}
+                  className="bg-blue-400 h-6 mr-0.5 relative inline-block"
+                />
+              ))}
             </div>
           </div>
           <p>Copyright &copy; 1996-{new Date().getFullYear()} Thomas Hanna</p>

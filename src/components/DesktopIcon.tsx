@@ -1,7 +1,6 @@
 import { classNames } from "../utils/classNames";
 
 import type { DesktopIconDefinition } from "../utils/desktopTypes";
-import type { FC } from "react";
 
 type DesktopIconProps = DesktopIconDefinition & {
   focused: string;
@@ -9,7 +8,7 @@ type DesktopIconProps = DesktopIconDefinition & {
   isFolder: boolean;
 };
 
-export const DesktopIcon: FC<DesktopIconProps> = function ({
+export function DesktopIcon({
   id,
   focused,
   setFocused,
@@ -18,7 +17,12 @@ export const DesktopIcon: FC<DesktopIconProps> = function ({
   onClick,
   href,
   isFolder,
-}) {
+}: DesktopIconProps) {
+  const selectIcon = () => setFocused(id);
+  const activateIcon = () => {
+    selectIcon();
+    onClick?.();
+  };
   const className = classNames(
     "block cursor-pointer relative mb-2 w-[80px] bg-transparent p-0 text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700",
     isFolder && "border-black text-black!",
@@ -45,8 +49,8 @@ export const DesktopIcon: FC<DesktopIconProps> = function ({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        onFocus={() => setFocused(id)}
-        onClick={() => setFocused(id)}
+        onFocus={selectIcon}
+        onClick={selectIcon}
         className={className}
       >
         {content}
@@ -56,16 +60,13 @@ export const DesktopIcon: FC<DesktopIconProps> = function ({
   return (
     <button
       type="button"
-      onFocus={() => setFocused(id)}
-      onClick={() => {
-        setFocused(id);
-        onClick?.();
-      }}
+      onFocus={selectIcon}
+      onClick={activateIcon}
       className={className}
     >
       {content}
     </button>
   );
-};
+}
 
 export default DesktopIcon;
