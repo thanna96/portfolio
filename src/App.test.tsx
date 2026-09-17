@@ -24,7 +24,7 @@ describe("Portfolio startup", () => {
       vi.advanceTimersByTime(1);
     });
     expect(
-      screen.queryByLabelText("Portfolio startup"),
+      screen.queryByText(/welcome to my website/i),
     ).not.toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "Projects" }),
