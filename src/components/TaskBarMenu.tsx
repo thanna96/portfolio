@@ -48,7 +48,8 @@ const menuItems = [
 export const TaskBarMenu: FC<{
   onNavigate?: () => void;
   onOpenResume: () => void;
-}> = function ({ onNavigate, onOpenResume }) {
+  onOpenContact: () => void;
+}> = function ({ onNavigate, onOpenResume, onOpenContact }) {
   return (
     <div aria-label="Start menu" className="classic-start-menu">
       <div className="start-branding" aria-hidden="true">
@@ -62,7 +63,13 @@ export const TaskBarMenu: FC<{
           <TaskMenuItem
             key={id}
             {...item}
-            onActivate={id === "resume" ? onOpenResume : undefined}
+            onActivate={
+              id === "resume"
+                ? onOpenResume
+                : id === "contact"
+                  ? onOpenContact
+                  : undefined
+            }
             onNavigate={onNavigate}
           />
         ))}

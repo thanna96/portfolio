@@ -1,6 +1,7 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
+import ContactWindow from "./ContactWindow";
 import { ExplorerWindow } from "./ExplorerWindow";
 import { getAge } from "./MyInformationWindow";
 import { RetroWindow } from "./RetroWindow";
@@ -88,6 +89,29 @@ describe("retro windows", () => {
     ).toBeDisabled();
     expect(document.querySelector("iframe")).not.toBeInTheDocument();
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
+  });
+
+  it("hands the draft to an email client with the fixed recipient and encoded content", () => {
+    render(<ContactWindow visible close={vi.fn()} />);
+    fireEvent.change(screen.getByLabelText("Subject:"), {
+      target: { value: "Hello & welcome?" },
+    });
+    fireEvent.change(screen.getByLabelText("Message"), {
+      target: { value: "First line\nSecond & third" },
+    });
+    expect(screen.getByLabelText("To:")).toHaveValue("thanna96@gmail.com");
+    const mailto = screen
+      .getByRole("link", { name: "Open email app" })
+      .getAttribute("href")!;
+    expect(mailto).toBe(
+      "mailto:thanna96@gmail.com?subject=Hello%20%26%20welcome%3F&body=First%20line%0ASecond%20%26%20third",
+    );
+    const gmail = new URL(
+      screen.getByRole("link", { name: "Open Gmail" }).getAttribute("href")!,
+    );
+    expect(gmail.searchParams.get("to")).toBe("thanna96@gmail.com");
+    expect(gmail.searchParams.get("su")).toBe("Hello & welcome?");
+    expect(gmail.searchParams.get("body")).toBe("First line\nSecond & third");
   });
 
   it("changes age on the birthday rather than an average year boundary", () => {

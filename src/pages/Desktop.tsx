@@ -18,6 +18,7 @@ import {
   type WindowId,
 } from "../utils/desktopTypes";
 
+const ContactWindow = lazy(() => import("../components/windows/ContactWindow"));
 const ResumeWindow = lazy(() => import("../components/windows/ResumeWindow"));
 const PaintWindow = lazy(() => import("../components/windows/PaintWindow"));
 const ExplorerWindow = lazy(
@@ -81,7 +82,10 @@ export const Desktop: FC = function () {
   return (
     <>
       <DesktopIconGroup icons={icons} isFolder={false} />
-      <TaskBar onOpenResume={() => open("resume")} />
+      <TaskBar
+        onOpenResume={() => open("resume")}
+        onOpenContact={() => open("contact")}
+      />
       <Suspense
         fallback={
           <p role="status" className="absolute bottom-12 left-4 text-white">
@@ -139,6 +143,17 @@ export const Desktop: FC = function () {
           />
         )}
       </Suspense>
+      {openedWindows.includes("contact") && (
+        <Suspense
+          fallback={
+            <p role="status" className="absolute bottom-12 left-4 text-white">
+              Opening email…
+            </p>
+          }
+        >
+          <ContactWindow close={() => close("contact")} visible />
+        </Suspense>
+      )}
       {openedWindows.includes("resume") && (
         <Suspense
           fallback={

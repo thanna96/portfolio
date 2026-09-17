@@ -1,4 +1,5 @@
 export type WindowId =
+  | "contact"
   | "resume"
   | "profile_picture"
   | "my_information"

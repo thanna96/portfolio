@@ -51,3 +51,5 @@ Run `npm run check` before pushing. Netlify uses the Node version in `netlify.to
 Package versions and `package-lock.json` are committed for reproducible `npm ci` installations. Build output, editor files, and unused starter assets are excluded.
 
 The résumé opens in a local document window from My Documents and Start. `public/resume/page-1.png` and `page-2.png` are previews of the canonical `public/Thomas_Hanna_Resume.pdf`; regenerate them and `src/components/windows/resumePages.json` when replacing the PDF. The original PDF remains available through Save a copy.
+
+Contact opens a classic email composer. Open email app uses a mailto link; Open Gmail opens a Gmail compose page. Visitors review and send in their own email service; the portfolio has no email backend or delivery charges.

@@ -104,3 +104,11 @@ a { color: inherit; }
 .resume-pages { padding: 10px; }
 .resume-pages section { margin: 0 auto 12px; max-width: 800px; }
 .resume-pages img { display: block; width: 100%; height: auto; background: #fff; box-shadow: 2px 2px 2px #404040; }
+
+.classic-mail { display: flex; flex-direction: column; gap: 8px; margin: 8px !important; background: #c0c0c0; color: #000; font: 12px Tahoma, Arial, sans-serif; }
+.mail-actions { display: flex; flex-wrap: wrap; gap: 6px; padding-bottom: 8px; border-bottom: 2px groove #fff; }
+.mail-action { display: inline-flex; align-items: center; justify-content: center; width: auto; padding: 0 10px; text-decoration: none; }
+.mail-fields { display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 6px; align-items: center; }
+.mail-fields input, .classic-mail textarea { border: 2px solid; border-color: #808080 #fff #fff #808080; border-radius: 0; background: #fff; padding: 4px; color: #000; }
+.classic-mail textarea { min-height: 100px; flex: 1; resize: none; font: 13px Arial, sans-serif; }
+.mail-help { margin: 0; line-height: 1.4; }

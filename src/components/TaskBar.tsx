@@ -10,7 +10,13 @@ const formatTime = () =>
     minute: "2-digit",
   });
 
-export function TaskBar({ onOpenResume }: { onOpenResume: () => void }) {
+export function TaskBar({
+  onOpenResume,
+  onOpenContact,
+}: {
+  onOpenResume: () => void;
+  onOpenContact: () => void;
+}) {
   const [menuActive, setMenuActive] = useState(false);
   const [time, setTime] = useState(formatTime);
   const navigationRef = useRef<HTMLDivElement>(null);
@@ -60,6 +66,7 @@ export function TaskBar({ onOpenResume }: { onOpenResume: () => void }) {
         <div id="start-menu">
           <TaskBarMenu
             onOpenResume={onOpenResume}
+            onOpenContact={onOpenContact}
             onNavigate={() => setMenuActive(false)}
           />
         </div>

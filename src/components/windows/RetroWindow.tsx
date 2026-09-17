@@ -12,6 +12,7 @@ type RetroWindowProps = {
   footer?: ReactNode;
   children: ReactNode;
   height?: number;
+  width?: number;
   contentClassName?: string;
 };
 
@@ -25,6 +26,7 @@ export function RetroWindow({
   footer,
   children,
   height = 500,
+  width = 520,
   contentClassName = "border border-black bg-white p-2 shadow-inner",
 }: RetroWindowProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -110,6 +112,7 @@ export function RetroWindow({
     <Modal
       open={visible}
       centered
+      width={width}
       closable={false}
       footer={null}
       onCancel={close}
