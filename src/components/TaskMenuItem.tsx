@@ -16,7 +16,7 @@ export const TaskMenuItem: FC<propTypes> = function ({
       rel="noopener noreferrer"
       onClick={onNavigate}
       className={classNames(
-        "block text-inherit no-underline w-full h-[20%] cursor-pointer p-1 hover:bg-blue-600 hover:text-white focus-visible:bg-blue-600 focus-visible:text-white",
+        "block text-black! no-underline w-full h-[20%] cursor-pointer p-1 hover:bg-blue-600 hover:text-white! focus-visible:bg-blue-600 focus-visible:text-white!",
         borderTop && "border-t-4 border-[#a4a4a4]",
       )}
     >

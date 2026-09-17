@@ -9,15 +9,7 @@ export function WindowBootUp({ progress }: { progress: number }) {
         <div
           className={`bg-white relative border-black border-2 text-center h-3/4 md:h-4/6 m-auto w-3/4`}
         >
-          <div
-            style={{
-              background: `url(${logo})`,
-              backgroundRepeat: "no-repeat",
-              backgroundPositionX: "center",
-              backgroundPositionY: "calc(50% - 40px)",
-            }}
-            className={"bg-size-[60%] md:bg-size-[50%] h-full relative"}
-          >
+          <div className="flex h-full min-h-0 flex-col">
             <h1 className={"text-xl text-center md:text-left font-black p-3"}>
               Thomas Hanna
               <br />
@@ -25,18 +17,18 @@ export function WindowBootUp({ progress }: { progress: number }) {
               <br />
               Click to open files!
             </h1>
-            <h1
-              style={{ bottom: "80px" }}
-              className={
-                "absolute w-full text-xl text-center md:text-right font-black p-3"
-              }
-            >
+            <div className="flex min-h-0 flex-1 items-center justify-center px-4">
+              <img
+                src={logo}
+                alt="Windows logo"
+                className="h-full max-h-full w-3/5 max-w-[260px] object-contain"
+              />
+            </div>
+            <h1 className="shrink-0 w-full text-xl text-center md:text-right font-black p-3">
               Welcome to my website!
             </h1>
             <div
-              className={
-                "w-full m-0 absolute bottom-0 border-t-8 border-blue-800"
-              }
+              className={"w-full m-0 shrink-0 border-t-8 border-blue-800"}
               style={{ background: "#C0C0C0", height: "80px" }}
             >
               <div className={"mx-auto text-center mt-2"}>Starting Up...</div>

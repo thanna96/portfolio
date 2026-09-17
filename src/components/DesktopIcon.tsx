@@ -21,7 +21,7 @@ export const DesktopIcon: FC<DesktopIconProps> = function ({
 }) {
   const className = classNames(
     "block cursor-pointer relative mb-2 w-[80px] bg-transparent p-0 text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700",
-    isFolder && "border-black",
+    isFolder && "border-black text-black!",
     focused === id && "border border-dashed",
   );
   const content = (
@@ -31,7 +31,7 @@ export const DesktopIcon: FC<DesktopIconProps> = function ({
         <span
           className={classNames(
             "block text-center break-words",
-            !isFolder && "text-white",
+            isFolder ? "text-black" : "text-white",
           )}
         >
           {text}

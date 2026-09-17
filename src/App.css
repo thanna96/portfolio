@@ -19,3 +19,6 @@ progress {
   min-height: 50vh;
   margin-bottom: 30px;
 }
+
+/* Keep native document links consistent with classic desktop labels. */
+a { color: inherit; }
