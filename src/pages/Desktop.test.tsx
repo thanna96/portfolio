@@ -10,7 +10,13 @@ describe("Desktop windows", () => {
     render(<Desktop />);
     const documents = screen.getByRole("button", { name: "My Documents" });
     await user.click(documents);
-    const dialog = await screen.findByRole("dialog", { name: "My Documents" });
+    // Cold transformation of the lazy Ant Design chunk can exceed the default
+    // one-second query timeout on a shared CI runner.
+    const dialog = await screen.findByRole(
+      "dialog",
+      { name: "My Documents" },
+      { timeout: 5000 },
+    );
     expect(
       within(dialog).getByRole("link", { name: "My Resume" }),
     ).toHaveAttribute("href", "/Thomas_Hanna_Resume.pdf");
