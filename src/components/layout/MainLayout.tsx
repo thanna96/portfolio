@@ -17,7 +17,7 @@ export function MainLayout({ children }: { children: ReactNode }) {
   }, [loading]);
   return (
     <div className="min-h-dvh bg-black flex items-center justify-center">
-      <main className="relative h-[100dvh] w-full overflow-auto bg-[#3A6EA5] lg:h-[80dvh] lg:w-3/4">
+      <main className="relative h-[100dvh] w-full overflow-hidden bg-[#3A6EA5] lg:h-[80dvh] lg:w-3/4">
         {loading ? <WindowBootUp progress={progress * 10} /> : children}
       </main>
     </div>

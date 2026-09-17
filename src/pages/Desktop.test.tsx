@@ -1,10 +1,66 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import {
+  cleanup,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 
 import { Desktop } from "./Desktop";
 
+afterEach(cleanup);
+
 describe("Desktop windows", () => {
+  it("keeps multiple windows and restores a minimized email draft from the taskbar", async () => {
+    const user = userEvent.setup();
+    render(<Desktop />);
+    await user.click(screen.getByRole("button", { name: "My Documents" }));
+    const documents = await screen.findByRole(
+      "dialog",
+      { name: "My Documents" },
+      { timeout: 5000 },
+    );
+    await user.click(screen.getByRole("button", { name: "Start" }));
+    await user.click(screen.getByRole("button", { name: "Contact" }));
+    const contact = await screen.findByRole("dialog", {
+      name: "New Message - Outlook Express",
+    });
+    await user.type(
+      within(contact).getByLabelText("Subject:"),
+      "A saved draft",
+    );
+    await user.click(
+      within(contact).getByRole("button", {
+        name: "Minimize New Message - Outlook Express",
+      }),
+    );
+    expect(contact).not.toBeVisible();
+    expect(documents).toHaveAttribute("data-active", "true");
+    await user.click(
+      screen.getByRole("button", {
+        name: "Switch to New Message - Outlook Express",
+      }),
+    );
+    expect(contact).toBeVisible();
+    expect(within(contact).getByLabelText("Subject:")).toHaveValue(
+      "A saved draft",
+    );
+    await user.click(
+      screen.getByRole("button", { name: "Switch to My Documents" }),
+    );
+    expect(documents).toHaveAttribute("data-active", "true");
+    expect(contact).toHaveAttribute("data-active", "false");
+    await user.click(
+      within(documents).getByRole("button", { name: "Close My Documents" }),
+    );
+    expect(
+      screen.queryByRole("button", { name: "Switch to My Documents" }),
+    ).not.toBeInTheDocument();
+    expect(contact).toHaveAttribute("data-active", "true");
+  });
+
   it("opens one window on repeated activation, closes it and allows reopening", async () => {
     const user = userEvent.setup();
     render(<Desktop />);
@@ -32,8 +88,6 @@ describe("Desktop windows", () => {
     await user.click(
       within(dialog).getByRole("button", { name: "Profile Picture" }),
     );
-    // rc-util uses the same title ID for every dialog in test mode, so locate
-    // this window through its unique close control when two dialogs are open.
     const paintClose = await screen.findByRole("button", {
       name: "Close Profile Picture - Paint",
     });

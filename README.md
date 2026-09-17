@@ -34,13 +34,13 @@ The development server runs at http://localhost:3000. Run `npm run build` to cre
 - `src/App.tsx` renders the desktop without a router; this portfolio has a single page.
 - `src/components/layout/MainLayout.tsx` preserves the original five-second startup animation with timer cleanup.
 - `src/pages/Desktop.tsx` manages unique, typed window IDs.
-- `src/components/windows/RetroWindow.tsx` provides shared responsive window chrome with Ant Design dialog focus and Escape behavior.
+- `src/components/windows/RetroWindow.tsx` provides accessible, nonmodal window chrome with focus, Escape, drag, and resize behavior.
 - `src/components/iconsFolder.tsx` defines document, project, language, and social links as typed data.
 - `src/utils/desktopTypes.ts` holds shared icon and window types.
 - `public/Thomas_Hanna_Resume.pdf` is the single résumé source. Replace it to update both résumé links.
 - `src/tailwind.css` imports Tailwind and the Ant Design reset. `src/App.css` contains the small global style layer.
 
-Native buttons open desktop windows; anchors open documents and external links. Start-menu navigation closes on link activation, outside clicks, or Escape. The taskbar clock updates at minute boundaries. Drag a window by its blue title bar with a mouse or touch; viewport bounds keep it reachable, and resizing the browser recenters it. Window content scrolls within the available viewport, and the explorer displays a local, decorative Google homepage inspired by the early 2000s. Search and subscription controls are nonfunctional and send no requests.
+Native buttons open desktop windows; anchors open documents and external links. Start-menu navigation closes on link activation, outside clicks, or Escape. The taskbar clock updates at minute boundaries. Drag a window by its blue title bar with a mouse or touch; blue desktop bounds keep it reachable, and resizing the browser clamps it within that area. Window content scrolls within the available viewport, and the explorer displays a local, decorative Google homepage inspired by the early 2000s. Search and subscription controls are nonfunctional and send no requests.
 
 ## Validation and deployment
 
@@ -53,3 +53,5 @@ Package versions and `package-lock.json` are committed for reproducible `npm ci`
 The résumé opens in a local document window from My Documents and Start. `public/resume/page-1.png` and `page-2.png` are previews of the canonical `public/Thomas_Hanna_Resume.pdf`; regenerate them and `src/components/windows/resumePages.json` when replacing the PDF. The original PDF remains available through Save a copy.
 
 Contact opens a classic email composer. Open email app uses a mailto link; Open Gmail opens a Gmail compose page. Visitors review and send in their own email service; the portfolio has no email backend or delivery charges.
+
+Desktop windows support minimizing, maximizing/restoring, title-bar dragging, and resizing from the bottom-right corner (arrow keys also work on the resize handle). Each open window has a taskbar button; clicking the active button minimizes it, and clicking any other button restores and activates its window. Minimized windows retain drafts and game state. The desktop also includes beginner Minesweeper with a safe first click, flags, timer, reset, and a flag mode for touch screens.

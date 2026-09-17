@@ -1,4 +1,12 @@
-import { type FC, lazy, Suspense, useState } from "react";
+import {
+  type FC,
+  lazy,
+  Suspense,
+  useReducer,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { DesktopIconGroup } from "../components/DesktopIconGroup";
 import {
@@ -8,16 +16,21 @@ import {
   projectIcons,
 } from "../components/iconsFolder";
 import { TaskBar } from "../components/TaskBar";
+import { WindowContext } from "../components/windows/WindowContext";
+import imageIcon from "../files/icons/Windows 2000 Bitmap Image-4.png";
 import folderIcon from "../files/icons/Windows 2000 Closed Folder-6.png";
 import computer from "../files/icons/Windows 2000 My Computer-3.png";
+import documentIcon from "../files/icons/Windows 2000 Text Document-2.png";
 import internet from "../files/icons/Windows 2000 The Internet-2.png";
 import {
-  closeWindow,
-  openWindow,
   type DesktopIconDefinition,
   type WindowId,
 } from "../utils/desktopTypes";
+import { initialWindows, windowReducer } from "../utils/windowManager";
 
+const MinesweeperWindow = lazy(
+  () => import("../components/windows/MinesweeperWindow"),
+);
 const ContactWindow = lazy(() => import("../components/windows/ContactWindow"));
 const ResumeWindow = lazy(() => import("../components/windows/ResumeWindow"));
 const PaintWindow = lazy(() => import("../components/windows/PaintWindow"));
@@ -36,11 +49,79 @@ const MyInformationWindow = lazy(() =>
 );
 
 export const Desktop: FC = function () {
-  const [openedWindows, setOpenedWindows] = useState<WindowId[]>([]);
-  const open = (id: WindowId): void =>
-    setOpenedWindows((windows) => openWindow(windows, id));
-  const close = (id: WindowId): void =>
-    setOpenedWindows((windows) => closeWindow(windows, id));
+  const surface = useRef<HTMLDivElement>(null);
+  const [bounds, setBounds] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+  useLayoutEffect(() => {
+    const element = surface.current;
+    if (!element) return;
+    const measure = () =>
+      setBounds({
+        width: element.clientWidth || window.innerWidth,
+        height: element.clientHeight,
+      });
+    measure();
+    if (typeof ResizeObserver === "undefined") {
+      window.addEventListener("resize", measure);
+      return () => window.removeEventListener("resize", measure);
+    }
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+  const [windows, dispatch] = useReducer(windowReducer, initialWindows);
+  const open = (id: WindowId) => dispatch({ type: "open", id });
+  const close = (id: WindowId) => dispatch({ type: "close", id });
+  const metadata: Record<WindowId, { title: string; icon: string }> = {
+    minesweeper: { title: "Minesweeper", icon: "/minesweeper.svg" },
+    my_information: { title: "About This Person", icon: computer },
+    internet: { title: "Internet Explorer", icon: internet },
+    my_documents: { title: "My Documents", icon: folderIcon },
+    my_languages: { title: "Favorite Languages", icon: folderIcon },
+    my_projects: { title: "My Projects", icon: folderIcon },
+    my_bookmarks: { title: "Bookmarks", icon: folderIcon },
+    contact: { title: "New Message - Outlook Express", icon: documentIcon },
+    resume: { title: "Thomas Hanna Resume", icon: documentIcon },
+    profile_picture: { title: "Profile Picture - Paint", icon: imageIcon },
+  };
+  const renderWindow = (id: WindowId) => {
+    const props = { visible: true, close: () => close(id) };
+    switch (id) {
+      case "minesweeper":
+        return <MinesweeperWindow {...props} />;
+      case "my_information":
+        return <MyInformationWindow {...props} icon={computer} />;
+      case "internet":
+        return <ExplorerWindow {...props} icon={internet} />;
+      case "contact":
+        return <ContactWindow {...props} />;
+      case "resume":
+        return <ResumeWindow {...props} />;
+      case "profile_picture":
+        return <PaintWindow {...props} />;
+      default:
+        return (
+          <FolderMenu
+            {...props}
+            title={metadata[id].title}
+            icons={
+              id === "my_documents"
+                ? getMyDocsIcons(
+                    () => open("profile_picture"),
+                    () => open("resume"),
+                  )
+                : id === "my_languages"
+                  ? languageIcons
+                  : id === "my_projects"
+                    ? projectIcons
+                    : bookmarkIcons
+            }
+          />
+        );
+    }
+  };
   const icons: DesktopIconDefinition[] = [
     {
       id: "my_information",
@@ -78,105 +159,53 @@ export const Desktop: FC = function () {
       image: folderIcon,
       onClick: () => open("my_bookmarks"),
     },
+    {
+      id: "minesweeper",
+      text: "Minesweeper",
+      image: "/minesweeper.svg",
+      onClick: () => open("minesweeper"),
+    },
   ];
   return (
-    <>
+    <div ref={surface} className="desktop-surface">
       <DesktopIconGroup icons={icons} isFolder={false} />
       <TaskBar
+        windows={windows.opened.map((id) => ({
+          id,
+          ...metadata[id],
+          minimized: windows.minimized.includes(id),
+        }))}
+        activeWindow={windows.active}
+        onWindowClick={(id) => dispatch({ type: "taskbar", id })}
         onOpenResume={() => open("resume")}
         onOpenContact={() => open("contact")}
       />
-      <Suspense
-        fallback={
-          <p role="status" className="absolute bottom-12 left-4 text-white">
-            Opening window…
-          </p>
-        }
-      >
-        {openedWindows.includes("my_information") && (
-          <MyInformationWindow
-            close={() => close("my_information")}
-            icon={computer}
-            visible={true}
-          />
-        )}
-        {openedWindows.includes("internet") && (
-          <ExplorerWindow
-            close={() => close("internet")}
-            icon={internet}
-            visible={true}
-          />
-        )}
-        {openedWindows.includes("my_documents") && (
-          <FolderMenu
-            icons={getMyDocsIcons(
-              () => open("profile_picture"),
-              () => open("resume"),
-            )}
-            close={() => close("my_documents")}
-            title={"My Documents"}
-            visible={true}
-          />
-        )}
-        {openedWindows.includes("my_languages") && (
-          <FolderMenu
-            icons={languageIcons}
-            close={() => close("my_languages")}
-            title={"Favorite Languages"}
-            visible={true}
-          />
-        )}
-        {openedWindows.includes("my_projects") && (
-          <FolderMenu
-            icons={projectIcons}
-            close={() => close("my_projects")}
-            title={"My Projects"}
-            visible={true}
-          />
-        )}
-        {openedWindows.includes("my_bookmarks") && (
-          <FolderMenu
-            icons={bookmarkIcons}
-            close={() => close("my_bookmarks")}
-            title={"Bookmarks"}
-            visible={true}
-          />
-        )}
-      </Suspense>
-      {openedWindows.includes("contact") && (
-        <Suspense
-          fallback={
-            <p role="status" className="absolute bottom-12 left-4 text-white">
-              Opening email…
-            </p>
-          }
+      {windows.opened.map((id) => (
+        <WindowContext.Provider
+          key={id}
+          value={{
+            bounds,
+            active: windows.active === id,
+            minimized: windows.minimized.includes(id),
+            maximized: windows.maximized.includes(id),
+            zIndex: 10 + windows.order.indexOf(id),
+            focus: () => dispatch({ type: "focus", id }),
+            minimize: () => dispatch({ type: "minimize", id }),
+            maximize: () => dispatch({ type: "maximize", id }),
+          }}
         >
-          <ContactWindow close={() => close("contact")} visible />
-        </Suspense>
-      )}
-      {openedWindows.includes("resume") && (
-        <Suspense
-          fallback={
-            <p role="status" className="absolute bottom-12 left-4 text-white">
-              Opening résumé…
-            </p>
-          }
-        >
-          <ResumeWindow close={() => close("resume")} visible />
-        </Suspense>
-      )}
-      {openedWindows.includes("profile_picture") && (
-        <Suspense
-          fallback={
-            <p role="status" className="absolute bottom-12 left-4 text-white">
-              Opening picture…
-            </p>
-          }
-        >
-          <PaintWindow close={() => close("profile_picture")} visible />
-        </Suspense>
-      )}
-    </>
+          <Suspense
+            fallback={
+              <p role="status" className="absolute bottom-12 left-4 text-white">
+                Opening {metadata[id].title}…
+              </p>
+            }
+          >
+            {renderWindow(id)}
+          </Suspense>
+        </WindowContext.Provider>
+      ))}
+    </div>
   );
 };
 

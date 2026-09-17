@@ -4,6 +4,8 @@ import { TaskBarMenu } from "./TaskBarMenu";
 import soundIcon from "../files/icons/sound_icon.png";
 import startIcon from "../files/icons/start_main.0.jpg";
 
+import type { WindowId } from "../utils/desktopTypes";
+
 const formatTime = () =>
   new Date().toLocaleTimeString("en-US", {
     hour: "2-digit",
@@ -13,9 +15,15 @@ const formatTime = () =>
 export function TaskBar({
   onOpenResume,
   onOpenContact,
+  windows = [],
+  activeWindow = null,
+  onWindowClick,
 }: {
   onOpenResume: () => void;
   onOpenContact: () => void;
+  windows?: { id: WindowId; title: string; icon: string; minimized: boolean }[];
+  activeWindow?: WindowId | null;
+  onWindowClick?: (id: WindowId) => void;
 }) {
   const [menuActive, setMenuActive] = useState(false);
   const [time, setTime] = useState(formatTime);
@@ -71,7 +79,7 @@ export function TaskBar({
           />
         </div>
       )}
-      <div className="absolute bottom-0 left-0 w-full bg-[#C0C0C0] py-0.5 h-10">
+      <div className="desktop-taskbar">
         <button
           ref={startRef}
           type="button"
@@ -83,7 +91,22 @@ export function TaskBar({
         >
           <img src={startIcon} alt="" className="h-[35px]" />
         </button>
-        <div className="float-right h-[35px] border-2 border-[#a4a4a4] shadow-inner px-3 mr-1">
+        <div className="taskbar-windows" aria-label="Open windows">
+          {windows.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className="taskbar-window"
+              aria-label={`Switch to ${item.title}`}
+              aria-pressed={activeWindow === item.id && !item.minimized}
+              onClick={() => onWindowClick?.(item.id)}
+            >
+              <img src={item.icon} alt="" />
+              <span>{item.title}</span>
+            </button>
+          ))}
+        </div>
+        <div className="taskbar-clock float-right h-[35px] border-2 border-[#a4a4a4] shadow-inner px-3 mr-1">
           <img
             className="mr-2 inline-block h-5 w-auto align-text-bottom"
             src={soundIcon}

@@ -1,4 +1,5 @@
 export type WindowId =
+  | "minesweeper"
   | "contact"
   | "resume"
   | "profile_picture"

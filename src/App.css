@@ -112,3 +112,26 @@ a { color: inherit; }
 .mail-fields input, .classic-mail textarea { border: 2px solid; border-color: #808080 #fff #fff #808080; border-radius: 0; background: #fff; padding: 4px; color: #000; }
 .classic-mail textarea { min-height: 100px; flex: 1; resize: none; font: 13px Arial, sans-serif; }
 .mail-help { margin: 0; line-height: 1.4; }
+
+.desktop-window { position: absolute; display: flex; flex-direction: column; min-width: 0; padding: 2px; border: 2px solid; border-color: #fff #404040 #404040 #fff; background: #c0c0c0; color: #000; box-shadow: 2px 2px 4px #0005; }
+.desktop-window[hidden] { display: none; }
+.desktop-window:focus { outline: none; }
+.desktop-titlebar { display: flex; align-items: center; flex-shrink: 0; gap: 3px; height: 24px; padding: 2px; background: linear-gradient(to right, #000080, #1084d0); color: #fff; cursor: move; user-select: none; font: bold 13px Tahoma, Arial, sans-serif; }
+.desktop-window[data-active="false"] .desktop-titlebar { background: linear-gradient(to right, #808080, #b5b5b5); color: #eee; }
+.desktop-titlebar > img { width: 18px; height: 18px; object-fit: contain; }
+.desktop-titlebar > span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.desktop-titlebar button { display: grid; place-items: center; flex-shrink: 0; width: 20px; height: 20px; border: 2px solid; border-color: #fff #404040 #404040 #fff; background: #c0c0c0; color: #000; font: bold 15px Arial, sans-serif; cursor: pointer; }
+.desktop-titlebar button:active { border-color: #404040 #fff #fff #404040; }
+.window-resize-handle { position: absolute; right: 1px; bottom: 1px; width: 20px; height: 20px; background: repeating-linear-gradient(135deg, transparent 0 2px, #808080 2px 3px, #fff 3px 4px); clip-path: polygon(100% 0, 100% 100%, 0 100%); cursor: nwse-resize; }
+.desktop-taskbar { position: absolute; bottom: 0; left: 0; display: flex; align-items: center; gap: 5px; width: 100%; height: 40px; padding: 2px; border-top: 2px solid #fff; background: #c0c0c0; z-index: 1000; }
+.desktop-taskbar > button { flex-shrink: 0; }
+.taskbar-windows { display: flex; gap: 3px; flex: 1; min-width: 0; overflow-x: auto; }
+.taskbar-window { display: flex; align-items: center; gap: 4px; flex: 0 1 160px; min-width: 90px; height: 30px; padding: 3px; border: 2px solid; border-color: #fff #404040 #404040 #fff; color: #000; background: #c0c0c0; font: 12px Tahoma, Arial, sans-serif; }
+.taskbar-window[aria-pressed="true"] { border-color: #404040 #fff #fff #404040; background: #ddd; font-weight: bold; }
+.taskbar-window img { width: 18px; height: 18px; object-fit: contain; flex-shrink: 0; }
+.taskbar-window span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.taskbar-clock { flex-shrink: 0; white-space: nowrap; }
+.classic-start-menu { position: absolute; z-index: 1001; }
+@media (max-width: 500px) { .taskbar-clock { padding: 0 4px; margin: 0; } .taskbar-clock time { font-size: 12px; } .taskbar-clock > img { display: none; } }
+
+.desktop-surface { position: relative; width: 100%; height: 100%; overflow: hidden; isolation: isolate; }

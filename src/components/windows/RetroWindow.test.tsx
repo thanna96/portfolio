@@ -20,49 +20,37 @@ function pointer(target: Element, type: string, x: number, y: number) {
 }
 
 describe("retro windows", () => {
-  it("drags by the titlebar, clamps to the viewport and resets on resize", () => {
+  it("drags within desktop bounds, resizes and restores its size after maximizing", () => {
     render(
       <RetroWindow visible close={vi.fn()} title="Projects" icon="folder.png">
         Project links
       </RetroWindow>,
     );
+    const dialog = screen.getByRole("dialog", { name: "Projects" });
     const handle = screen.getByText("Projects").parentElement!;
-    const wrapper = handle.closest(".ant-modal-container")!.parentElement!;
-    vi.spyOn(wrapper, "getBoundingClientRect").mockReturnValue({
-      left: 100,
-      top: 100,
-      right: 600,
-      bottom: 600,
-      width: 500,
-      height: 500,
-      x: 100,
-      y: 100,
-      toJSON: () => ({}),
-    });
+    const left = parseFloat(dialog.style.left);
     pointer(handle, "pointerdown", 120, 110);
     pointer(handle, "pointermove", 150, 140);
-    expect(wrapper.style.transform).toBe("translate(30px, 30px)");
+    expect(parseFloat(dialog.style.left)).toBe(left + 30);
     pointer(handle, "pointermove", -1000, -1000);
-    expect(wrapper.style.transform).toBe("translate(-92px, -92px)");
-    pointer(handle, "pointermove", 10000, 10000);
-    expect(wrapper.style.transform).toBe(
-      `translate(${window.innerWidth - 608}px, ${window.innerHeight - 608}px)`,
-    );
-    pointer(handle, "pointerup", 10000, 10000);
-    pointer(handle, "pointermove", 0, 0);
-    expect(wrapper.style.transform).toBe(
-      `translate(${window.innerWidth - 608}px, ${window.innerHeight - 608}px)`,
-    );
-    fireEvent(window, new Event("resize"));
-    expect(wrapper.style.transform).toBe("translate(0px, 0px)");
-    pointer(
-      screen.getByRole("button", { name: "Close Projects" }),
-      "pointerdown",
-      0,
-      0,
-    );
-    pointer(handle, "pointermove", 100, 100);
-    expect(wrapper.style.transform).toBe("translate(0px, 0px)");
+    expect(dialog.style.left).toBe("8px");
+    expect(dialog.style.top).toBe("8px");
+    pointer(handle, "pointerup", 0, 0);
+    const resize = screen.getByRole("button", { name: "Resize Projects" });
+    const width = parseFloat(dialog.style.width);
+    pointer(resize, "pointerdown", 100, 100);
+    pointer(resize, "pointermove", 140, 120);
+    pointer(resize, "pointerup", 140, 120);
+    expect(parseFloat(dialog.style.width)).toBe(width + 40);
+    fireEvent.click(screen.getByRole("button", { name: "Maximize Projects" }));
+    expect(dialog).toHaveAttribute("data-maximized", "true");
+    expect(dialog.style.width).toBe("100%");
+    fireEvent.click(screen.getByRole("button", { name: "Restore Projects" }));
+    expect(parseFloat(dialog.style.width)).toBe(width + 40);
+    fireEvent.keyDown(screen.getByRole("button", { name: "Resize Projects" }), {
+      key: "ArrowRight",
+    });
+    expect(parseFloat(dialog.style.width)).toBe(width + 50);
   });
   it("names its dialog and exposes an accessible close action", () => {
     const close = vi.fn();
