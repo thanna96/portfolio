@@ -194,13 +194,7 @@ export const Desktop: FC = function () {
             maximize: () => dispatch({ type: "maximize", id }),
           }}
         >
-          <Suspense
-            fallback={
-              <p role="status" className="absolute bottom-12 left-4 text-white">
-                Opening {metadata[id].title}…
-              </p>
-            }
-          >
+          <Suspense fallback={null}>
             {renderWindow(id)}
           </Suspense>
         </WindowContext.Provider>
