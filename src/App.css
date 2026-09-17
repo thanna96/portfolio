@@ -97,3 +97,10 @@ a { color: inherit; }
 .start-item-label { white-space: nowrap; }
 .start-item-separator { position: relative; margin-top: 5px; }
 .start-item-separator::before { content: ""; position: absolute; top: -4px; left: 3px; right: 3px; border-top: 1px solid #808080; border-bottom: 1px solid #fff; }
+
+.resume-document { margin: 6px !important; border: 2px solid; border-color: #808080 #fff #fff #808080; background: #808080; }
+.classic-start-item { width: 100%; text-align: left; }
+
+.resume-pages { padding: 10px; }
+.resume-pages section { margin: 0 auto 12px; max-width: 800px; }
+.resume-pages img { display: block; width: 100%; height: auto; background: #fff; box-shadow: 2px 2px 2px #404040; }

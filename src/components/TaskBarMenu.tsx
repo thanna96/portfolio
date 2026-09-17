@@ -45,9 +45,10 @@ const menuItems = [
   },
 ];
 
-export const TaskBarMenu: FC<{ onNavigate?: () => void }> = function ({
-  onNavigate,
-}) {
+export const TaskBarMenu: FC<{
+  onNavigate?: () => void;
+  onOpenResume: () => void;
+}> = function ({ onNavigate, onOpenResume }) {
   return (
     <div aria-label="Start menu" className="classic-start-menu">
       <div className="start-branding" aria-hidden="true">
@@ -58,7 +59,12 @@ export const TaskBarMenu: FC<{ onNavigate?: () => void }> = function ({
       </div>
       <div className="start-menu-items">
         {menuItems.map(({ id, ...item }) => (
-          <TaskMenuItem key={id} {...item} onNavigate={onNavigate} />
+          <TaskMenuItem
+            key={id}
+            {...item}
+            onActivate={id === "resume" ? onOpenResume : undefined}
+            onNavigate={onNavigate}
+          />
         ))}
       </div>
     </div>

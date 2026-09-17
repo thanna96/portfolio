@@ -18,6 +18,7 @@ import {
   type WindowId,
 } from "../utils/desktopTypes";
 
+const ResumeWindow = lazy(() => import("../components/windows/ResumeWindow"));
 const PaintWindow = lazy(() => import("../components/windows/PaintWindow"));
 const ExplorerWindow = lazy(
   () => import("../components/windows/ExplorerWindow"),
@@ -80,7 +81,7 @@ export const Desktop: FC = function () {
   return (
     <>
       <DesktopIconGroup icons={icons} isFolder={false} />
-      <TaskBar />
+      <TaskBar onOpenResume={() => open("resume")} />
       <Suspense
         fallback={
           <p role="status" className="absolute bottom-12 left-4 text-white">
@@ -104,7 +105,10 @@ export const Desktop: FC = function () {
         )}
         {openedWindows.includes("my_documents") && (
           <FolderMenu
-            icons={getMyDocsIcons(() => open("profile_picture"))}
+            icons={getMyDocsIcons(
+              () => open("profile_picture"),
+              () => open("resume"),
+            )}
             close={() => close("my_documents")}
             title={"My Documents"}
             visible={true}
@@ -135,6 +139,17 @@ export const Desktop: FC = function () {
           />
         )}
       </Suspense>
+      {openedWindows.includes("resume") && (
+        <Suspense
+          fallback={
+            <p role="status" className="absolute bottom-12 left-4 text-white">
+              Opening résumé…
+            </p>
+          }
+        >
+          <ResumeWindow close={() => close("resume")} visible />
+        </Suspense>
+      )}
       {openedWindows.includes("profile_picture") && (
         <Suspense
           fallback={

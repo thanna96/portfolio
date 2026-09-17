@@ -49,3 +49,5 @@ Vitest uses jsdom and the jest-dom matchers registered in `src/setupTests.ts`. T
 Run `npm run check` before pushing. Netlify uses the Node version in `netlify.toml`, runs the build, and publishes `dist/`.
 
 Package versions and `package-lock.json` are committed for reproducible `npm ci` installations. Build output, editor files, and unused starter assets are excluded.
+
+The résumé opens in a local document window from My Documents and Start. `public/resume/page-1.png` and `page-2.png` are previews of the canonical `public/Thomas_Hanna_Resume.pdf`; regenerate them and `src/components/windows/resumePages.json` when replacing the PDF. The original PDF remains available through Save a copy.

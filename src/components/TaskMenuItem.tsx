@@ -8,13 +8,23 @@ export const TaskMenuItem: FC<propTypes> = function ({
   borderTop,
   link,
   onNavigate,
+  onActivate,
 }: propTypes) {
+  const Tag = onActivate ? "button" : "a";
   return (
-    <a
-      href={link}
-      target={link.startsWith("mailto:") || link === "/" ? undefined : "_blank"}
+    <Tag
+      type={onActivate ? "button" : undefined}
+      href={onActivate ? undefined : link}
+      target={
+        onActivate || link.startsWith("mailto:") || link === "/"
+          ? undefined
+          : "_blank"
+      }
       rel="noopener noreferrer"
-      onClick={onNavigate}
+      onClick={() => {
+        onActivate?.();
+        onNavigate?.();
+      }}
       className={classNames(
         "classic-start-item text-black! hover:text-white! focus-visible:text-white!",
         borderTop && "start-item-separator",
@@ -22,7 +32,7 @@ export const TaskMenuItem: FC<propTypes> = function ({
     >
       <img className="start-item-icon" src={icon} alt="" />
       <span className="start-item-label">{title}</span>
-    </a>
+    </Tag>
   );
 };
 type propTypes = {
@@ -31,4 +41,5 @@ type propTypes = {
   borderTop: boolean;
   link: string;
   onNavigate?: () => void;
+  onActivate?: () => void;
 };

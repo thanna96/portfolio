@@ -6,12 +6,13 @@ import type { DesktopIconDefinition } from "../utils/desktopTypes";
 
 export const getMyDocsIcons = (
   openProfile: () => void,
+  openResume: () => void,
 ): DesktopIconDefinition[] => [
   {
     id: "my-resume",
     text: "My Resume",
     image: textDocument,
-    href: "/Thomas_Hanna_Resume.pdf",
+    onClick: openResume,
   },
   {
     id: "profile-picture",

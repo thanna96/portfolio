@@ -10,7 +10,7 @@ const formatTime = () =>
     minute: "2-digit",
   });
 
-export function TaskBar() {
+export function TaskBar({ onOpenResume }: { onOpenResume: () => void }) {
   const [menuActive, setMenuActive] = useState(false);
   const [time, setTime] = useState(formatTime);
   const navigationRef = useRef<HTMLDivElement>(null);
@@ -58,7 +58,10 @@ export function TaskBar() {
     <div ref={navigationRef}>
       {menuActive && (
         <div id="start-menu">
-          <TaskBarMenu onNavigate={() => setMenuActive(false)} />
+          <TaskBarMenu
+            onOpenResume={onOpenResume}
+            onNavigate={() => setMenuActive(false)}
+          />
         </div>
       )}
       <div className="absolute bottom-0 left-0 w-full bg-[#C0C0C0] py-0.5 h-10">

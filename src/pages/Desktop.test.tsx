@@ -17,9 +17,18 @@ describe("Desktop windows", () => {
       { name: "My Documents" },
       { timeout: 5000 },
     );
+    await user.click(within(dialog).getByRole("button", { name: "My Resume" }));
+    const resumeClose = await screen.findByRole("button", {
+      name: "Close Thomas Hanna Resume",
+    });
+    const resume = resumeClose.closest('[role="dialog"]')! as HTMLElement;
     expect(
-      within(dialog).getByRole("link", { name: "My Resume" }),
-    ).toHaveAttribute("href", "/Thomas_Hanna_Resume.pdf");
+      within(resume).getByRole("img", {
+        name: "Thomas Hanna résumé, page 1 of 2",
+      }),
+    ).toHaveAttribute("src", "/resume/page-1.png");
+    await user.click(resumeClose);
+    await waitFor(() => expect(resume).not.toBeInTheDocument());
     await user.click(
       within(dialog).getByRole("button", { name: "Profile Picture" }),
     );
