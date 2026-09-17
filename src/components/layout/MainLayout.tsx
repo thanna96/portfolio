@@ -1,40 +1,25 @@
-import React, { FC, useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
-import { Desktop } from "../../pages/Desktop";
 import { WindowBootUp } from "../../pages/WindowBootUp";
 
-type MainLayoutProps = {
-  children?: React.ReactNode;
-};
+export const BOOT_DURATION_MS = 5000;
+const BOOT_STEPS = 10;
 
-export const MainLayout: FC<MainLayoutProps> = function ({
-  children,
-}: MainLayoutProps) {
-  const [loading, setLoading] = useState<boolean>(true);
+export function MainLayout({ children }: { children: ReactNode }) {
+  const [progress, setProgress] = useState(0);
+  const loading = progress < BOOT_STEPS;
   useEffect(() => {
-    setTimeout(function () {
-      setLoading(false);
-    }, 5000);
-  }, []);
-  const content = loading ? (
-    <WindowBootUp />
-  ) : children ? (
-    <>{children}</>
-  ) : (
-    <Desktop />
-  );
+    if (!loading) return;
+    const timer = window.setInterval(() => {
+      setProgress((value) => Math.min(value + 1, BOOT_STEPS));
+    }, BOOT_DURATION_MS / BOOT_STEPS);
+    return () => window.clearInterval(timer);
+  }, [loading]);
   return (
-    <div className="min-h-screen bg-black">
-      <div className={"centered-container h-screen"}>
-        <div
-          className={"w-full h-3/4 lg:w-3/4 lg:h-3/4 m-auto relative"}
-          style={{ background: "#3A6EA5" }}
-        >
-          {content}
-        </div>
-      </div>
+    <div className="min-h-dvh bg-black flex items-center justify-center">
+      <main className="relative h-[100dvh] w-full overflow-auto bg-[#3A6EA5] lg:h-[80dvh] lg:w-3/4">
+        {loading ? <WindowBootUp progress={progress * 10} /> : children}
+      </main>
     </div>
   );
-};
-
-export default MainLayout;
+}

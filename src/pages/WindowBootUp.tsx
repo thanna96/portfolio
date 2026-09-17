@@ -1,16 +1,8 @@
-import React, { FC, useEffect, useState } from "react";
-
 import logo from "../files/icons/windows-logo.jpeg";
 
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-export const WindowBootUp: FC = function () {
-  const [count, setCount] = useState<number>(0);
-
-  useEffect(() => {
-    for (let i = 0; i < 10; i++) {
-      setTimeout(() => setCount(count + i), i * 500);
-    }
-  }, []);
+export function WindowBootUp({ progress }: { progress: number }) {
+  const count = progress / 10;
   return (
     <div className={"h-full relative"}>
       <div className={"centered-container h-full"}>
@@ -24,7 +16,7 @@ export const WindowBootUp: FC = function () {
               backgroundPositionX: "center",
               backgroundPositionY: "calc(50% - 40px)",
             }}
-            className={"!md:bg-size-[50%] !bg-size-[60%] h-full relative"}
+            className={"bg-size-[60%] md:bg-size-[50%] h-full relative"}
           >
             <h1 className={"text-xl text-center md:text-left font-black p-3"}>
               Thomas Hanna
@@ -33,12 +25,6 @@ export const WindowBootUp: FC = function () {
               <br />
               Click to open files!
             </h1>
-            {/*<img*/}
-            {/*  className={"mx-auto h-2/6 md:h-2/5"}*/}
-            {/*  src={logo}*/}
-            {/*  alt={"windows logo"}*/}
-            {/*/>*/}
-            {/*BETA*/}
             <h1
               style={{ bottom: "80px" }}
               className={
@@ -89,6 +75,6 @@ export const WindowBootUp: FC = function () {
       </div>
     </div>
   );
-};
+}
 
 export default WindowBootUp;

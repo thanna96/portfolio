@@ -1,49 +1,71 @@
-import React, { FC } from "react";
-
 import { classNames } from "../utils/classNames";
 
-export const DesktopIcon: FC<propType> = function ({
+import type { DesktopIconDefinition } from "../utils/desktopTypes";
+import type { FC } from "react";
+
+type DesktopIconProps = DesktopIconDefinition & {
+  focused: string;
+  setFocused: (id: string) => void;
+  isFolder: boolean;
+};
+
+export const DesktopIcon: FC<DesktopIconProps> = function ({
+  id,
   focused,
   setFocused,
   text,
   image,
   onClick,
+  href,
   isFolder,
-}: propType) {
-  return (
-    <div
-      onClick={(): void => {
-        setFocused(text);
-        onClick();
-      }}
-      className={classNames(
-        "cursor-pointer relative mb-2 w-[80px]",
-        isFolder && "border-black",
-        focused === text && "border border-dashed",
-      )}
-    >
-      <img className={"mx-auto h-[50px]"} src={image} alt={"start menu icon"} />
-      <div className={"overflow-x-hidden mx-auto max-w-[80px]"}>
-        <p
+}) {
+  const className = classNames(
+    "block cursor-pointer relative mb-2 w-[80px] bg-transparent p-0 text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700",
+    isFolder && "border-black",
+    focused === id && "border border-dashed",
+  );
+  const content = (
+    <>
+      <img className="mx-auto h-[50px]" src={image} alt="" />
+      <span className="block overflow-x-hidden mx-auto max-w-[80px]">
+        <span
           className={classNames(
-            "mb-0 text-center break-words",
+            "block text-center break-words",
             !isFolder && "text-white",
           )}
         >
           {text}
-        </p>
-      </div>
-    </div>
+        </span>
+      </span>
+    </>
+  );
+  if (href !== undefined) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onFocus={() => setFocused(id)}
+        onClick={() => setFocused(id)}
+        className={className}
+      >
+        {content}
+      </a>
+    );
+  }
+  return (
+    <button
+      type="button"
+      onFocus={() => setFocused(id)}
+      onClick={() => {
+        setFocused(id);
+        onClick?.();
+      }}
+      className={className}
+    >
+      {content}
+    </button>
   );
 };
 
 export default DesktopIcon;
-
-type propType = {
-  focused: string;
-  setFocused: (a: string) => void;
-  text: string;
-  image: string;
-  onClick: () => void;
-  isFolder: boolean;
-};

@@ -4,35 +4,25 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=18.17.0"
+    "node": ">=24.0.0 <25"
   },
   "dependencies": {
-    "@ant-design/icons": "^6.1.0",
-    "@tailwindcss/vite": "^4.2.1",
     "antd": "^6.3.1",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-draggable": "^4.5.0",
-    "react-router-dom": "^7.13.1",
-    "styled-components": "^6.3.11"
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "@types/jest": "^30.0.0",
-    "@types/node": "^25.3.3",
+    "@types/node": "^24.13.5",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@types/styled-components": "^5.1.36",
-    "@vitejs/plugin-legacy": "^7.2.1",
-    "@vitejs/plugin-react": "^5.1.4",
+    "@vitejs/plugin-react": "^6.1.1",
     "eslint": "^9.39.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jest": "^29.15.0",
-    "eslint-plugin-json": "^4.0.1",
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
@@ -40,22 +30,26 @@
     "jsdom": "^28.1.0",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.2.1",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.0",
     "typescript-eslint": "^8.56.1",
-    "vite": "^7.3.1",
-    "vite-plugin-svgr": "^4.5.0",
-    "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.0.18"
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@eslint/js": "^9.39.3",
+    "@eslint/eslintrc": "^3.3.1",
+    "@vitest/eslint-plugin": "^1.6.27"
   },
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build",
+    "build": "npm run typecheck && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write .",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "typecheck": "tsc --noEmit",
+    "test:run": "vitest run",
+    "check": "npm run lint && npm run test:run && npm run build"
   },
   "browserslist": {
     "production": [

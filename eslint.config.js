@@ -2,6 +2,7 @@ import { fileURLToPath } from 'node:url';
 
 import js from '@eslint/js';
 import globals from 'globals';
+import vitest from '@vitest/eslint-plugin';
 import { FlatCompat } from '@eslint/eslintrc';
 import tseslint from 'typescript-eslint';
 
@@ -29,14 +30,9 @@ const sourcePluginConfigs = compat
     files: sourceFiles,
   }));
 
-const jestPluginConfigs = compat.extends('plugin:jest/recommended').map((config) => ({
-  ...config,
-  files: testFiles,
-}));
-
 export default [
   {
-    ignores: ['build/**', 'coverage/**', 'node_modules/**', '*.config.js', '.eslintrc.js'],
+    ignores: ['build/**', 'dist/**', 'coverage/**', 'node_modules/**', '*.config.js', '.eslintrc.js'],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -109,9 +105,12 @@ export default [
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.jest,
+        ...vitest.environments.env.globals,
       },
     },
   },
-  ...jestPluginConfigs,
+  {
+    ...vitest.configs.recommended,
+    files: testFiles,
+  },
 ];

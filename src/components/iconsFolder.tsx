@@ -3,169 +3,127 @@ import bookmarkIcon from "../files/icons/Windows 2000 Internet Document-5.png";
 import textDocument from "../files/icons/Windows 2000 Text Document-2.png";
 import profile from "../files/images/profile_picture.jpg";
 
-export const myDocsIcons = [
+import type { DesktopIconDefinition } from "../utils/desktopTypes";
+
+export const myDocsIcons: DesktopIconDefinition[] = [
   {
+    id: "my-resume",
     text: "My Resume",
     image: textDocument,
-    onClick: (): void => {
-      window.open("Thomas_Hanna_Resume.pdf", "_blank");
-      return;
-    },
+    href: "/Thomas_Hanna_Resume.pdf",
   },
   {
+    id: "profile-picture",
     text: "Profile Picture",
     image: imageFile,
-    onClick: (): void => {
-      window.open(profile, "_blank");
-      return;
-    },
+    href: profile,
   },
 ];
-export const languageIcons = [
+export const languageIcons: DesktopIconDefinition[] = [
   {
+    id: "javascript",
     text: "Javascript",
     image: bookmarkIcon,
-    onClick: (): void => {
-      window.open(
-        "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-        "_blank",
-      );
-      return;
-    },
+    href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
   },
   {
+    id: "react",
     text: "React",
     image: bookmarkIcon,
-    onClick: (): void => {
-      window.open("https://reactjs.org/docs/getting-started.html", "_blank");
-      return;
-    },
+    href: "https://react.dev/learn",
   },
   {
+    id: "angular",
     text: "Angular",
     image: bookmarkIcon,
-    onClick: (): void => {
-      window.open("https://docs.angularjs.org/api", "_blank");
-      return;
-    },
+    href: "https://angular.dev/overview",
   },
   {
+    id: "java",
     text: "Java",
     image: bookmarkIcon,
-    onClick: (): void => {
-      window.open("https://docs.oracle.com/en/java/", "_blank");
-      return;
-    },
+    href: "https://docs.oracle.com/en/java/",
   },
   {
+    id: "c",
     text: "C",
     image: bookmarkIcon,
-    onClick: (): void => {
-      window.open("https://devdocs.io/c/", "_blank");
-      return;
-    },
+    href: "https://devdocs.io/c/",
   },
   {
+    id: "python",
     text: "Python",
     image: bookmarkIcon,
-    onClick: (): void => {
-      window.open("https://docs.python.org/3/", "_blank");
-      return;
-    },
+    href: "https://docs.python.org/3/",
   },
   {
+    id: "sql",
     text: "SQL",
     image: bookmarkIcon,
-    onClick: (): void => {
-      window.open(
-        "https://docs.microsoft.com/en-us/sql/?view=sql-server-ver15",
-        "_blank",
-      );
-      return;
-    },
+    href: "https://learn.microsoft.com/en-us/sql/",
   },
 ];
-export const projectIcons = [
+export const projectIcons: DesktopIconDefinition[] = [
   {
+    id: "portfolio-website",
     text: "Portfolio Website",
     image: textDocument,
-    onClick: (): void => {
-      window.open("/", "_blank");
-      return;
-    },
+    href: "/",
   },
   {
+    id: "calculator-web-app",
     text: "Calculator Web App",
     image: textDocument,
-    onClick: (): void => {
-      window.open("https://github.com/thanna96/calculator-web-app", "_blank");
-      return;
-    },
+    href: "https://github.com/thanna96/calculator-web-app",
   },
   {
+    id: "ai-risk-intelligence-platform",
     text: "AI Risk Intelligence Platform",
     image: textDocument,
-    onClick: (): void => {
-      window.open("https://github.com/thanna96/lenses-hackathon", "_blank");
-      return;
-    },
+    href: "https://github.com/thanna96/lenses-hackathon",
   },
   {
+    id: "ecommerce-store",
     text: "Ecommerce Store",
     image: textDocument,
-    onClick: (): void => {
-      window.open("https://test-store-thomas-hanna.netlify.app/", "_blank");
-      return;
-    },
+    href: "https://test-store-thomas-hanna.netlify.app/",
   },
   {
+    id: "crypto-chat",
     text: "Crypto Chat",
     image: textDocument,
-    onClick: (): void => {
-      window.open("https://github.com/thanna96/Crypto-Chat", "_blank");
-      return;
-    },
+    href: "https://github.com/thanna96/Crypto-Chat",
   },
   {
+    id: "termgrid",
     text: "Termgrid",
     image: textDocument,
-    onClick: (): void => {
-      window.open("https://app.termgrid.com/", "_blank");
-      return;
-    },
+    href: "https://app.termgrid.com/",
   },
   {
+    id: "az-auto",
     text: "AZ-Auto",
     image: textDocument,
-    onClick: (): void => {
-      window.open("https://az-auto.netlify.app/", "_blank");
-      return;
-    },
+    href: "https://az-auto.netlify.app/",
   },
 ];
-export const bookmarkIcons = [
+export const bookmarkIcons: DesktopIconDefinition[] = [
   {
+    id: "twitter",
     text: "Twitter",
     image: bookmarkIcon,
-    onClick: (): void => {
-      window.open("https://twitter.com/ThomasHanna96", "_blank");
-      return;
-    },
+    href: "https://twitter.com/ThomasHanna96",
   },
   {
+    id: "linkedin",
     text: "LinkedIn",
     image: bookmarkIcon,
-    onClick: (): void => {
-      window.open("https://www.linkedin.com/in/thomashanna96/", "_blank");
-      return;
-    },
+    href: "https://www.linkedin.com/in/thomashanna96/",
   },
   {
+    id: "github",
     text: "Github",
     image: bookmarkIcon,
-    onClick: (): void => {
-      window.open("https://github.com/thanna96", "_blank");
-      return;
-    },
+    href: "https://github.com/thanna96",
   },
 ];

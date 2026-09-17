@@ -1,81 +1,51 @@
 # Windows 2000 Portfolio
 
-A playful, Vite-powered React and TypeScript portfolio that recreates the nostalgia of a Windows 2000 desktop. Visitors boot into a faux operating system, explore folders, and open documents that highlight my work and contact information—all while the UI mimics classic start menus, task bars, and modals.
-
-## Features
-- **Boot-up experience** – `MainLayout` fades from a retro loading screen (`WindowBootUp`) into the desktop to set the tone.
-- **Interactive desktop** – Icons on the desktop open windows for documents, projects, languages, and bookmarks via reusable `FolderMenu` components.
-- **Start menu shortcuts** – The custom task bar and start menu expose quick actions for email, résumé download, and social links.
-- **Responsive layout** – Tailwind CSS utilities keep the faux desktop usable on both large monitors and mobile screens.
-- **Accessible assets** – PDF résumé, profile imagery, and Windows 2000-inspired iconography live alongside the codebase for easy swapping.
-
-## Tech stack
-- [React 18](https://react.dev/) with TypeScript
-- [Vite](https://vitejs.dev/) for lightning-fast dev tooling
-- [Ant Design](https://ant.design/) modals for the folder windows
-- [Tailwind CSS 4](https://tailwindcss.com/) (via `@tailwindcss/vite`) for styling
-- [Vitest](https://vitest.dev/) and [Testing Library](https://testing-library.com/) for unit testing
-- ESLint, Prettier, and TypeScript ESLint for static analysis and formatting
+Thomas Hanna’s React and TypeScript portfolio recreates a Windows 2000 desktop with folders, a start menu, and classic windows for projects, documents, and contact details.
 
 ## Getting started
-1. **Prerequisites** – Install [Node.js](https://nodejs.org/) 18 or later (which bundles npm).
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-3. **Run the development server**:
-   ```bash
-   npm run dev
-   ```
-   Vite serves the site at [http://localhost:5173](http://localhost:5173) by default.
 
-## Available scripts
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the Vite development server with hot module replacement. |
-| `npm run build` | Create a production build in the `dist/` directory. |
-| `npm run preview` | Preview the built site locally using Vite's preview server. |
-| `npm run lint` | Lint all `.ts` and `.tsx` files with ESLint. |
-| `npm run lint:fix` | Automatically fix lint issues where possible. |
-| `npm run format` | Format the entire codebase with Prettier. |
-| `npm run test` | Execute the Vitest unit test suite. |
-| `npm run test:ui` | Launch the interactive Vitest UI for focused test runs. |
+Use Node.js 24 LTS (the pinned version is in `.nvmrc`).
 
-## Project layout
-```
-portfolio/
-├── public/                     # Static assets served as-is (favicons, résumé)
-├── src/
-│   ├── components/             # Desktop UI, task bar, and window building blocks
-│   ├── pages/                  # `Desktop` and `WindowBootUp` experiences
-│   ├── files/                  # Windows-style icons and imagery
-│   ├── utils/                  # Shared helpers (e.g., `classNames`)
-│   ├── App.tsx                 # Router with desktop route
-│   └── main.tsx                # Vite entry point
-├── tailwind.config.ts          # Tailwind configuration
-├── vite.config.ts              # Vite tooling and plugins
-└── README.md                   # Project documentation (you are here)
+```sh
+nvm use
+npm ci
+npm run dev
 ```
 
-## Customization for people who want to copy me (please dont)
-- **Update desktop content** – Edit `src/components/iconsFolder.tsx` to change the links, labels, and assets for documents, languages, projects, and bookmarks.
-- **Swap résumé or imagery** – Replace files in `public/Thomas_Hanna_Resume.pdf` or `src/files/images/` with new assets.
-- **Adjust styling** – Tailwind class utilities and the `tailwind.css` file let you tweak colors, spacing, and sizing without leaving JSX.
-- **Extend windows** – Use the `FolderMenu` component pattern to add new windows or interactive experiences.
+The development server runs at http://localhost:3000. Run `npm run build` to create `dist/`, then `npm run preview` to inspect the production build.
 
-## Testing & quality
-Run the automated checks before committing changes:
-```bash
-npm run lint
-npm run test
-```
+## Commands
 
-## Deployment
-Generate a static production build with:
-```bash
-npm run build
-```
-The optimized output in `dist/` can be hosted on any static site provider (Netlify, Vercel, GitHub Pages, etc.). Use `npm run preview` to verify the build locally before deploying.
+| Command             | Purpose                                       |
+| ------------------- | --------------------------------------------- |
+| `npm run dev`       | Start the development server.                 |
+| `npm run build`     | Type-check and build production assets.       |
+| `npm run preview`   | Serve the production build locally.           |
+| `npm run lint`      | Check source and configuration files.         |
+| `npm run lint:fix`  | Apply automatic lint fixes.                   |
+| `npm run format`    | Format project files with Prettier.           |
+| `npm test`          | Run Vitest in watch mode.                     |
+| `npm run test:run`  | Run tests once.                               |
+| `npm run typecheck` | Check TypeScript without emitting files.      |
+| `npm run check`     | Run lint, tests, types, and production build. |
 
-## Acknowledgements
-Inspired by the Windows 2000 aesthetic that shaped a generation of computer users. All icons and imagery are bundled locally for offline-friendly theming.
+## Architecture and customization
+
+- `src/App.tsx` renders the desktop without a router; this portfolio has a single page.
+- `src/components/layout/MainLayout.tsx` preserves the original five-second startup animation with timer cleanup.
+- `src/pages/Desktop.tsx` manages unique, typed window IDs.
+- `src/components/windows/RetroWindow.tsx` provides shared responsive window chrome with Ant Design dialog focus and Escape behavior.
+- `src/components/iconsFolder.tsx` defines document, project, language, and social links as typed data.
+- `src/utils/desktopTypes.ts` holds shared icon and window types.
+- `public/Thomas_Hanna_Resume.pdf` is the single résumé source. Replace it to update both résumé links.
+- `src/tailwind.css` imports Tailwind and the Ant Design reset. `src/App.css` contains the small global style layer.
+
+Native buttons open desktop windows; anchors open documents and external links. Start-menu navigation closes on link activation, outside clicks, or Escape. The taskbar clock updates at minute boundaries. Window content scrolls within the available viewport, and the external iframe is mounted only while its window is open.
+
+## Validation and deployment
+
+Vitest uses jsdom and the jest-dom matchers registered in `src/setupTests.ts`. Tests cover startup completion and cancellation, keyboard interactions, duplicate window prevention, dialog naming, iframe teardown, and birthday calculation.
+
+Run `npm run check` before pushing. Netlify uses the Node version in `netlify.toml`, runs the build, and publishes `dist/`.
+
+Package versions and `package-lock.json` are committed for reproducible `npm ci` installations. Build output, editor files, and unused starter assets are excluded.

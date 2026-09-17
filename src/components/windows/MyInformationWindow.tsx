@@ -1,141 +1,94 @@
-import { Modal } from "antd";
-import React, { FC } from "react";
+import { RetroWindow, WindowMenu } from "./RetroWindow";
 
-export const MyInformationWindow: FC<propTypes> = function ({
-  visible,
-  icon,
-  close,
-}: propTypes) {
-  // TODO: Add dragable to large screens
-  return (
-    <>
-      <Modal
-        open={visible}
-        centered
-        closable={false}
-        footer={null}
-        onCancel={close}
-        mask={false}
-        styles={{
-         container: { padding: 0, border: "3px solid #C0C0C0" },
-          body: { padding: 0, height: 500 },
-        }}
-      >
-        <div
-          className={"w-full h-full shadow-2xl"}
-          style={{ border: "1px solid #C0C0C0", background: "#C0C0C0" }}
-        >
-          <div className={"h-6 bg-blue-700 text-center"}>
-            <img
-              className={"ml-1 mt-0.5 float-left"}
-              src={icon}
-              alt={"icon"}
-              style={{ height: "20px" }}
-            />
-            <span className={"mx-auto font-black text-white"}>
-              About This Person
-            </span>
-            <button
-              onClick={close}
-              className={
-                "border px-1 float-right mr-0.5 mt-0.5 font-black border-blue-700 text-xs"
-              }
-              style={{ background: "#C0C0C0" }}
-            >
-              X
-            </button>
-          </div>
-          <div
-            className={"h-6 text-left border"}
-            style={{ background: "#C0C0C0" }}
-          >
-            <span className={"font-black border-r-2 px-2"}>File</span>
-            <span className={"font-black border-r-2 px-2"}>Edit</span>
-            <span className={"font-black border-r-2 px-2"}>View</span>
-          </div>
-          <div
-            className={
-              "m-4 border border-black bg-white shadow-inner p-2 overflow-y-auto"
-            }
-            style={{ height: "375px" }}
-          >
-            <h1 className={"text-xl"}>Registered To:</h1>
-            <p className={"ml-4 !mb-0"}>
-              <b>Name:</b>Thomas Hanna
-            </p>
-            <p className={"ml-4 !mb-0"}>
-              <b>Job:</b>Web Developer
-            </p>
-            <p className={"ml-4 !mb-0"}>
-              <b>Age:</b>
-              {~~((Date.now() - +new Date("03/15/1996")) / 31557600000)}
-            </p>
-            <p className={"ml-4 !mb-0"}>
-              <b>Location:</b>NYC Metro Area
-            </p>
-            <p className={"ml-4 !mb-0"}>
-              <b>Email:</b>THanna96@gmail.com
-            </p>
-            <p className={"ml-4 !mb-0"}>
-              <b>About:</b>
-            </p>
-            <p className={"ml-4 !mb-0"}>
-              Detail-oriented Front End Developer with 4+ years of experience
-              designing, developing, and deploying high-performance, responsive
-              web applications. Skilled in React.js, TypeScript, and Next.js
-              with strong expertise in state management, component architecture,
-              and front-end performance optimization. Adept at collaborating
-              with cross-functional teams in Agile environments to deliver
-              scalable, accessible, and SEO-optimized digital products.
-              Demonstrated success in migrating legacy codebases, building
-              reusable UI libraries, and improving load times and user
-              engagement through modern web technologies and CI/CD pipelines.
-            </p>
-            <p className={"ml-4 mb-0"}>
-              My interest in programming in web development officially started
-              around 2015, I was struggling to find a career path in my first
-              year of college and had no direction, I passed my first semester
-              and was considering leaving and pursuing something else. Then, in
-              my second semester I took a Java programming class and realized
-              something, programming was something I enjoyed so much.
-            </p>
-            <p className={"ml-4 mb-0"}>
-              Fast forward years later and I am currently working as a web
-              developer and I could not be happier. I primarily do front end
-              work with JS using React and Angular but I am also open to back
-              end dev too!
-            </p>
-          </div>
-          <div className={"absolute bottom-0 h-9 w-full"}>
-            <button
-              onClick={close}
-              className={
-                "border px-1 float-right w-20 h-8 mr-2 font-black border-black text-xs"
-              }
-              style={{ background: "#C0C0C0" }}
-            >
-              Cancel
-            </button>
-            <button
-              onClick={close}
-              className={
-                "border px-1 float-right w-20 h-8 mr-1 font-black border-black text-xs"
-              }
-              style={{ background: "#C0C0C0" }}
-            >
-              OK
-            </button>
-          </div>
-        </div>
-      </Modal>
-    </>
-  );
-};
-
-export default MyInformationWindow;
-
-export type propTypes = {
+type MyInformationWindowProps = {
   icon: string;
   visible: boolean;
   close: () => void;
 };
+
+export function getAge(today: Date) {
+  const birthdayHasPassed =
+    today.getMonth() > 2 || (today.getMonth() === 2 && today.getDate() >= 15);
+  return today.getFullYear() - 1996 - (birthdayHasPassed ? 0 : 1);
+}
+
+export function MyInformationWindow({
+  visible,
+  icon,
+  close,
+}: MyInformationWindowProps) {
+  return (
+    <RetroWindow
+      visible={visible}
+      close={close}
+      title="About This Person"
+      icon={icon}
+      toolbar={<WindowMenu items={["File", "Edit", "View"]} />}
+      footer={
+        <div className="flex justify-end gap-1 px-2 pb-2">
+          <button
+            type="button"
+            onClick={close}
+            className="h-8 w-20 border border-black px-1 text-xs font-black"
+          >
+            OK
+          </button>
+          <button
+            type="button"
+            onClick={close}
+            className="h-8 w-20 border border-black px-1 text-xs font-black"
+          >
+            Cancel
+          </button>
+        </div>
+      }
+    >
+      <h1 className={"text-xl"}>Registered To:</h1>
+      <p className={"ml-4 !mb-0"}>
+        <b>Name:</b>Thomas Hanna
+      </p>
+      <p className={"ml-4 !mb-0"}>
+        <b>Job:</b>Web Developer
+      </p>
+      <p className={"ml-4 !mb-0"}>
+        <b>Age:</b>
+        {getAge(new Date())}
+      </p>
+      <p className={"ml-4 !mb-0"}>
+        <b>Location:</b>NYC Metro Area
+      </p>
+      <p className={"ml-4 !mb-0"}>
+        <b>Email:</b>THanna96@gmail.com
+      </p>
+      <p className={"ml-4 !mb-0"}>
+        <b>About:</b>
+      </p>
+      <p className={"ml-4 !mb-0"}>
+        Detail-oriented Front End Developer with 4+ years of experience
+        designing, developing, and deploying high-performance, responsive web
+        applications. Skilled in React.js, TypeScript, and Next.js with strong
+        expertise in state management, component architecture, and front-end
+        performance optimization. Adept at collaborating with cross-functional
+        teams in Agile environments to deliver scalable, accessible, and
+        SEO-optimized digital products. Demonstrated success in migrating legacy
+        codebases, building reusable UI libraries, and improving load times and
+        user engagement through modern web technologies and CI/CD pipelines.
+      </p>
+      <p className={"ml-4 mb-0"}>
+        My interest in programming in web development officially started around
+        2015, I was struggling to find a career path in my first year of college
+        and had no direction, I passed my first semester and was considering
+        leaving and pursuing something else. Then, in my second semester I took
+        a Java programming class and realized something, programming was
+        something I enjoyed so much.
+      </p>
+      <p className={"ml-4 mb-0"}>
+        Fast forward years later and I am currently working as a web developer
+        and I could not be happier. I primarily do front end work with JS using
+        React and Angular but I am also open to back end dev too!
+      </p>
+    </RetroWindow>
+  );
+}
+
+export default MyInformationWindow;

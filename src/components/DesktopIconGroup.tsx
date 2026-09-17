@@ -1,6 +1,8 @@
-import React, { FC, useState } from "react";
+import { type FC, useState } from "react";
 
 import { DesktopIcon } from "./DesktopIcon";
+
+import type { DesktopIconDefinition } from "../utils/desktopTypes";
 
 export const DesktopIconGroup: FC<propType> = function ({
   icons,
@@ -15,19 +17,15 @@ export const DesktopIconGroup: FC<propType> = function ({
           isFolder ? "grid-rows-2" : "grid-rows-4"
         } grid-flow-col gap-2 row-span-1 inline-grid`}
       >
-        {icons.map((icon) => {
-          return (
-            <DesktopIcon
-              isFolder={isFolder}
-              key={icon.text}
-              focused={focused}
-              setFocused={setFocused}
-              image={icon.image}
-              text={icon.text}
-              onClick={icon.onClick}
-            />
-          );
-        })}
+        {icons.map((icon) => (
+          <DesktopIcon
+            isFolder={isFolder}
+            key={icon.id}
+            focused={focused}
+            setFocused={setFocused}
+            {...icon}
+          />
+        ))}
       </div>
     </div>
   );
@@ -36,6 +34,6 @@ export const DesktopIconGroup: FC<propType> = function ({
 export default DesktopIconGroup;
 
 type propType = {
-  icons: Array<{ text: string; image: string; onClick: () => void }>;
+  icons: DesktopIconDefinition[];
   isFolder: boolean;
 };
