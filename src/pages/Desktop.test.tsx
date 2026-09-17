@@ -20,6 +20,20 @@ describe("Desktop windows", () => {
     expect(
       within(dialog).getByRole("link", { name: "My Resume" }),
     ).toHaveAttribute("href", "/Thomas_Hanna_Resume.pdf");
+    await user.click(
+      within(dialog).getByRole("button", { name: "Profile Picture" }),
+    );
+    // rc-util uses the same title ID for every dialog in test mode, so locate
+    // this window through its unique close control when two dialogs are open.
+    const paintClose = await screen.findByRole("button", {
+      name: "Close Profile Picture - Paint",
+    });
+    const paint = paintClose.closest('[role="dialog"]')! as HTMLElement;
+    expect(
+      within(paint).getByRole("img", { name: "Thomas Hanna" }),
+    ).toBeInTheDocument();
+    await user.click(paintClose);
+    await waitFor(() => expect(paint).not.toBeInTheDocument());
     await user.click(documents);
     expect(
       screen.getAllByRole("dialog", { name: "My Documents" }),

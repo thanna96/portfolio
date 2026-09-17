@@ -1,4 +1,5 @@
 export type WindowId =
+  | "profile_picture"
   | "my_information"
   | "internet"
   | "my_documents"

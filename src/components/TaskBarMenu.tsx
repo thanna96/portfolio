@@ -49,14 +49,18 @@ export const TaskBarMenu: FC<{ onNavigate?: () => void }> = function ({
   onNavigate,
 }) {
   return (
-    <div
-      aria-label="Start menu"
-      className="absolute bottom-10 m-0 w-11/12 min-h-[300px] p-0.5 sm:w-2/3 md:w-1/3 lg:w-1/4 bg-[#C0C0C0] border-[3px] border-[#a4a4a4]"
-      style={{ height: "50%" }}
-    >
-      {menuItems.map(({ id, ...item }) => (
-        <TaskMenuItem key={id} {...item} onNavigate={onNavigate} />
-      ))}
+    <div aria-label="Start menu" className="classic-start-menu">
+      <div className="start-branding" aria-hidden="true">
+        <span>
+          Windows <b>2000</b>
+          <small>Professional</small>
+        </span>
+      </div>
+      <div className="start-menu-items">
+        {menuItems.map(({ id, ...item }) => (
+          <TaskMenuItem key={id} {...item} onNavigate={onNavigate} />
+        ))}
+      </div>
     </div>
   );
 };

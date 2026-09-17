@@ -1,11 +1,12 @@
 import imageFile from "../files/icons/Windows 2000 Bitmap Image-4.png";
 import bookmarkIcon from "../files/icons/Windows 2000 Internet Document-5.png";
 import textDocument from "../files/icons/Windows 2000 Text Document-2.png";
-import profile from "../files/images/profile_picture.jpg";
 
 import type { DesktopIconDefinition } from "../utils/desktopTypes";
 
-export const myDocsIcons: DesktopIconDefinition[] = [
+export const getMyDocsIcons = (
+  openProfile: () => void,
+): DesktopIconDefinition[] => [
   {
     id: "my-resume",
     text: "My Resume",
@@ -16,7 +17,7 @@ export const myDocsIcons: DesktopIconDefinition[] = [
     id: "profile-picture",
     text: "Profile Picture",
     image: imageFile,
-    href: profile,
+    onClick: openProfile,
   },
 ];
 export const languageIcons: DesktopIconDefinition[] = [

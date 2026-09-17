@@ -4,7 +4,7 @@ import { DesktopIconGroup } from "../components/DesktopIconGroup";
 import {
   bookmarkIcons,
   languageIcons,
-  myDocsIcons,
+  getMyDocsIcons,
   projectIcons,
 } from "../components/iconsFolder";
 import { TaskBar } from "../components/TaskBar";
@@ -18,6 +18,7 @@ import {
   type WindowId,
 } from "../utils/desktopTypes";
 
+const PaintWindow = lazy(() => import("../components/windows/PaintWindow"));
 const ExplorerWindow = lazy(
   () => import("../components/windows/ExplorerWindow"),
 );
@@ -103,7 +104,7 @@ export const Desktop: FC = function () {
         )}
         {openedWindows.includes("my_documents") && (
           <FolderMenu
-            icons={myDocsIcons}
+            icons={getMyDocsIcons(() => open("profile_picture"))}
             close={() => close("my_documents")}
             title={"My Documents"}
             visible={true}
@@ -134,6 +135,17 @@ export const Desktop: FC = function () {
           />
         )}
       </Suspense>
+      {openedWindows.includes("profile_picture") && (
+        <Suspense
+          fallback={
+            <p role="status" className="absolute bottom-12 left-4 text-white">
+              Opening picture…
+            </p>
+          }
+        >
+          <PaintWindow close={() => close("profile_picture")} visible />
+        </Suspense>
+      )}
     </>
   );
 };

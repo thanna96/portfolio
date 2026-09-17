@@ -16,12 +16,12 @@ export const TaskMenuItem: FC<propTypes> = function ({
       rel="noopener noreferrer"
       onClick={onNavigate}
       className={classNames(
-        "block text-black! no-underline w-full h-[20%] cursor-pointer p-1 hover:bg-blue-600 hover:text-white! focus-visible:bg-blue-600 focus-visible:text-white!",
-        borderTop && "border-t-4 border-[#a4a4a4]",
+        "classic-start-item text-black! hover:text-white! focus-visible:text-white!",
+        borderTop && "start-item-separator",
       )}
     >
-      <img className={"inline w-[50px]"} src={icon} alt="" />
-      <span className={"ml-4"}>{title}</span>
+      <img className="start-item-icon" src={icon} alt="" />
+      <span className="start-item-label">{title}</span>
     </a>
   );
 };
