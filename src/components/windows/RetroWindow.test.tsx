@@ -81,7 +81,7 @@ describe("retro windows", () => {
     render(<ExplorerWindow visible icon="explorer.png" close={vi.fn()} />);
     const link = screen.getByRole("link", { name: "Open Space Jam website" });
     expect(link).toHaveAttribute("href", "https://www.spacejam.com/1996/");
-    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).not.toHaveAttribute("target");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
     expect(document.querySelector("iframe")).not.toBeInTheDocument();
   });

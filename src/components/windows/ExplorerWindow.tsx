@@ -28,9 +28,8 @@ export function ExplorerWindow({ visible, icon, close }: ExplorerWindowProps) {
             <a
               className="border-l-2 px-2 font-black text-black"
               href={SPACE_JAM_URL}
-              target="_blank"
               rel="noopener noreferrer"
-              aria-label="Open Space Jam in a new tab"
+              aria-label="Open Space Jam in this tab"
             >
               GO
             </a>
@@ -43,13 +42,14 @@ export function ExplorerWindow({ visible, icon, close }: ExplorerWindowProps) {
         <p>Explore the original movie website.</p>
         <a
           href={SPACE_JAM_URL}
-          target="_blank"
           rel="noopener noreferrer"
           className="border-2 border-black bg-[#C0C0C0] px-4 py-2 font-black text-black! shadow"
         >
           Open Space Jam website
         </a>
-        <p className="text-sm">Opens in a new browser tab.</p>
+        <p className="text-sm">
+          Opens in this tab. Use Back to return to the portfolio.
+        </p>
       </div>
     </RetroWindow>
   );
